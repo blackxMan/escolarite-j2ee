@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core" lang="en">
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:a="http://richfaces.org/a4j"
+   xmlns:s="http://jboss.org/schema/seam/taglib"
+   contentType="text/html">
+<h:html>
 <h:head>
 
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
   <meta name="description" content=""/>
   <meta name="author" content=""/>
-  <link rel="shortcut icon" href="#{facesContext.externalContext.getResource("images/favicon.png")}" type="image/png"/>
+  <link rel="shortcut icon" href="images/favicon.png" type="image/png"/>
 
-  <title><ui:insert name="title"></ui:insert></title>
-  <ui:insert name="stylesheet">
-  	<h:outputStylesheet name="css/style.default.css"></h:outputStylesheet>
-  	<h:outputStylesheet name="css/jquery.datatables.css"></h:outputStylesheet>
+  <title><ui:insert name="title"/></title>
+  <ui:insert name="stylesheets">
+  	<h:outputStylesheet name="/css/style.default.css"></h:outputStylesheet>
+  	<h:outputStylesheet name="/css/jquery.datatables.css"></h:outputStylesheet>
   </ui:insert>
   
-  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-  <script src="js/html5shiv.js"></script>
-  <script src="js/respond.min.js"></script>
-  <![endif]-->
+  
   
 </h:head>
 
@@ -46,7 +46,7 @@
         <!-- This is only visible to small devices -->
         <div class="visible-xs hidden-sm hidden-md hidden-lg">   
             <div class="media userlogged">
-                <img alt="" src="images/photos/loggeduser.png" class="media-object">
+                <img alt="" src="images/photos/loggeduser.png" class="media-object"/>
                 <div class="media-body">
                     <h4>John Doe</h4>
                     <span>"Life is so..."</span>
@@ -69,12 +69,12 @@
           <a href="#"><i class="fa fa-home"></i> <span>Configuration</span></a>
           <ul class="children">
             <li>
-              <a href="{{ path('type-reclamation_new"><i class="fa fa-caret-right"></i>Ajouter typ reclamation</a>
+              <a href="type-reclamation_new"><i class="fa fa-caret-right"></i>Ajouter typ reclamation</a>
             </li>
-            <li><a href="{{ path('type-reclamation"><i class="fa fa-caret-right"></i>Liste typ de reclamation</a></li>
-            <li><a href="{{ path('type-demande_new"><i class="fa fa-caret-right"></i>Ajouter typ demande</a></li>
-            <li><a href="{{ path('type-demande"><i class="fa fa-caret-right"></i>Liste typ demande</a></li>
-            <li><a href="{{ path('import_data"><i class="fa fa-caret-right"></i>Importation</a></li>
+            <li><a href="type-reclamation"><i class="fa fa-caret-right"></i>Liste typ de reclamation</a></li>
+            <li><a href="type-demande_new"><i class="fa fa-caret-right"></i>Ajouter typ demande</a></li>
+            <li><a href="type-demande"><i class="fa fa-caret-right"></i>Liste typ demande</a></li>
+            <li><a href="import_data"><i class="fa fa-caret-right"></i>Importation</a></li>
             <li><a href="#"><i class="fa fa-caret-right"></i>Listes des administrateurs</a></li>
             <li><a href="#"><i class="fa fa-caret-right"></i>Creer un Administrateur</a></li>
           </ul>
@@ -83,7 +83,7 @@
           <a href="#"><i class="fa fa-home"></i> <span>Reclamations</span></a>
           <ul class="children">
             <li>
-              <a href="{{ path('listerReclamation"><i class="fa fa-caret-right"></i>Liste des reclamations</a>
+              <a href="listerReclamation"><i class="fa fa-caret-right"></i>Liste des reclamations</a>
             </li>
           </ul>
         </li>
@@ -91,7 +91,7 @@
           <a href="#"><i class="fa fa-home"></i> <span>Demandes</span></a>
           <ul class="children">
             <li>
-              <a href="{{ path('listedemande"><i class="fa fa-caret-right"></i>Liste des demandes</a>
+              <a href="listedemande"><i class="fa fa-caret-right"></i>Liste des demandes</a>
             </li>
           </ul>
         </li>
@@ -193,36 +193,33 @@
   
 </section>
 
-<ui:insert name="javascript">
-<script src="js/jquery-1.10.2.min.js"></script>
-<script src="js/jquery-ui-1.10.3.min.js"></script>
-<script src="js/jquery-migrate-1.2.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/modernizr.min.js"></script>
-<script src="js/jquery.sparkline.min.js"></script>
-<script src="js/toggles.min.js"></script>
-<script src="js/retina.min.js"></script>
-<script src="js/jquery.cookies.js"></script>
-<script src="js/bootstrap-timepicker.min.js"></script>
+<ui:insert name="javascripts">
+<h:outputScript name="/js/jquery-1.10.2.min.js"></h:outputScript>
+<h:outputScript name="/js/jquery-ui-1.10.3.min.js"></h:outputScript>
+<h:outputScript name="/js/jquery-migrate-1.2.1.min.js"></h:outputScript>
+<h:outputScript name="/js/bootstrap.min.js"></h:outputScript>
+<h:outputScript name="/js/modernizr.min.js"></h:outputScript>
+<h:outputScript name="/js/jquery.sparkline.min.js"></h:outputScript>
+<h:outputScript name="/js/toggles.min.js"></h:outputScript>
+<h:outputScript name="/js/retina.min.js"></h:outputScript>
+<h:outputScript name="/js/jquery.cookies.js"></h:outputScript>
+<h:outputScript name="/js/bootstrap-timepicker.min.js"></h:outputScript>
 
-<script src="js/flot/flot.min.js"></script>
-<script src="js/flot/flot.resize.min.js"></script>
-<script src="js/morris.min.js"></script>
-<script src="js/raphael-2.1.0.min.js"></script>
+<h:outputScript name="/js/flot/flot.min.js"></h:outputScript>
+<h:outputScript name="/js/flot/flot.resize.min.js"></h:outputScript>
+<h:outputScript name="/js/morris.min.js"></h:outputScript>
+<h:outputScript name="/js/raphael-2.1.0.min.js"></h:outputScript>
 
-<script src="js/jquery.datatables.min.js"></script>
-<script src="js/chosen.jquery.min.js"></script>
-<script src="js/fullcalendar.min.js"></script>
-
-
-<script src="js/custom.js"></script>
-<script>
+<h:outputScript name="/js/jquery.datatables.min.js"></h:outputScript>
+<h:outputScript name="/js/chosen.jquery.min.js"></h:outputScript>
+<h:outputScript name="/js/fullcalendar.min.js"></h:outputScript>
 
 
-</script>
+<h:outputScript name="/js/custom.js"></h:outputScript>
 
-<!--script src="js/dashboard.js"></script-->
+<!--script src="/js/dashboard.js"></script-->
 
 </ui:insert>
-</ui:body>
-</html>
+</h:body>
+</h:html>
+</f:view>
