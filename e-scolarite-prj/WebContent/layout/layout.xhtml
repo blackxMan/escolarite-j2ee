@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" lang="en">
+<h:head>
+
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <link rel="shortcut icon" href="#{facesContext.externalContext.getResource("images/favicon.png")}" type="image/png"/>
+
+  <title><ui:insert name="title"></ui:insert></title>
+  <ui:insert name="stylesheet">
+  	<h:outputStylesheet name="css/style.default.css"></h:outputStylesheet>
+  	<h:outputStylesheet name="css/jquery.datatables.css"></h:outputStylesheet>
+  </ui:insert>
+  
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+  
+</h:head>
+
+<h:body>
+
+<!-- Preloader -->
+<div id="preloader">
+    <div id="status"><i class="fa fa-spinner fa-spin"></i></div>
+</div>
+
+<section>
+  
+  <div class="leftpanel">
+    
+    <div class="logopanel">
+        <h1><span>[</span> E-scolarite <span>]</span></h1>
+    </div><!-- logopanel -->
+        
+    <div class="leftpanelinner">    
+        
+        <!-- This is only visible to small devices -->
+        <div class="visible-xs hidden-sm hidden-md hidden-lg">   
+            <div class="media userlogged">
+                <img alt="" src="images/photos/loggeduser.png" class="media-object">
+                <div class="media-body">
+                    <h4>John Doe</h4>
+                    <span>"Life is so..."</span>
+                </div>
+            </div>
+          
+            <h5 class="sidebartitle actitle">Account</h5>
+            <ul class="nav nav-pills nav-stacked nav-bracket mb30">
+              <li><a href="profile.html"><i class="fa fa-user"></i> <span>Profile</span></a></li>
+              <li><a href="#"><i class="fa fa-cog"></i> <span>Account Settings</span></a></li>
+              <li><a href="#"><i class="fa fa-question-circle"></i> <span>Help</span></a></li>
+              <li><a href="signout.html"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
+            </ul>
+        </div>
+      
+      <h5 class="sidebartitle">Navigation</h5>
+      <ul class="nav nav-pills nav-stacked nav-bracket">
+        <ui:insert name="mainMenu">
+        <li class="nav-parent active">
+          <a href="#"><i class="fa fa-home"></i> <span>Configuration</span></a>
+          <ul class="children">
+            <li>
+              <a href="{{ path('type-reclamation_new"><i class="fa fa-caret-right"></i>Ajouter typ reclamation</a>
+            </li>
+            <li><a href="{{ path('type-reclamation"><i class="fa fa-caret-right"></i>Liste typ de reclamation</a></li>
+            <li><a href="{{ path('type-demande_new"><i class="fa fa-caret-right"></i>Ajouter typ demande</a></li>
+            <li><a href="{{ path('type-demande"><i class="fa fa-caret-right"></i>Liste typ demande</a></li>
+            <li><a href="{{ path('import_data"><i class="fa fa-caret-right"></i>Importation</a></li>
+            <li><a href="#"><i class="fa fa-caret-right"></i>Listes des administrateurs</a></li>
+            <li><a href="#"><i class="fa fa-caret-right"></i>Creer un Administrateur</a></li>
+          </ul>
+        </li>
+        <li class="nav-parent">
+          <a href="#"><i class="fa fa-home"></i> <span>Reclamations</span></a>
+          <ul class="children">
+            <li>
+              <a href="{{ path('listerReclamation"><i class="fa fa-caret-right"></i>Liste des reclamations</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-parent">
+          <a href="#"><i class="fa fa-home"></i> <span>Demandes</span></a>
+          <ul class="children">
+            <li>
+              <a href="{{ path('listedemande"><i class="fa fa-caret-right"></i>Liste des demandes</a>
+            </li>
+          </ul>
+        </li>
+        </ui:insert>
+      </ul>
+      
+      <div class="infosummary">
+        <h5 class="sidebartitle">Informations sur le Compte</h5>    
+        <ul>
+            
+            <li>
+                <div class="datainfo">
+                    <span class="text-muted">Dernière  connexion</span>
+                    <h4>d/m/Y H:i</h4>
+                </div>
+                <div id="sidebar-chart" class="chart"></div>   
+            </li>
+            
+        </ul>
+      </div><!-- infosummary -->
+      
+    </div><!-- leftpanelinner -->
+  </div><!-- leftpanel -->
+  
+  <div class="mainpanel">
+    
+    <div class="headerbar">
+      
+      <a class="menutoggle"><i class="fa fa-bars"></i></a>
+
+      <form class="searchform" action="http://themepixels.com/demo/webpage/bracket/index.html" method="post">
+        <input type="text" class="form-control" name="keyword" placeholder="Recherche ici.." />
+      </form>
+      
+      <div class="header-right">
+        <ul class="headermenu">
+          
+          <li>
+             <div id="divreload" class="btn-group">
+              <button id="nbr_notif" class="btn btn-default dropdown-toggle tp-icon" data-toggle="dropdown">
+               <i class='glyphicon glyphicon-globe'></i>
+              </button>
+              <div id="dropdown-menu" class="dropdown-menu dropdown-menu-head pull-right" >
+               
+                 <h5  class='title'></h5>
+
+                <ul id="list" class="dropdown-list gen-list">  
+
+                 
+                                                    
+
+                  
+                  
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <img src="images/photos/loggeduser.png" alt="" />
+                Fayssal tahtoub-name
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Paramètres</a></li>
+                <li><a href="admin_logout"><i class="glyphicon glyphicon-log-out"></i> Déconnexion</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div><!-- header-right -->
+      
+    </div><!-- headerbar -->
+    
+    <div class="pageheader">
+      <h2>
+      <ui:insert name="pageTitle">
+        <i class="fa fa-home"></i> Dashboard <span>Subtitle goes here...</span>
+      </ui:insert>
+      </h2>
+      <div class="breadcrumb-wrapper">
+        <span class="label">Vous etes ici:</span>
+        <ol class="breadcrumb">
+          <ui:insert name="breadcrumb">
+          <li><a href="index.html">Bracket</a></li>
+          <li class="active">Dashboard</li>
+          </ui:insert>
+        </ol>
+      </div>
+    </div>
+    
+    <div class="contentpanel">
+      <ui:insert name="content"></ui:insert>
+    </div><!-- contentpanel -->
+    
+  </div><!-- mainpanel -->
+  
+  
+</section>
+
+<ui:insert name="javascript">
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/jquery-ui-1.10.3.min.js"></script>
+<script src="js/jquery-migrate-1.2.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/modernizr.min.js"></script>
+<script src="js/jquery.sparkline.min.js"></script>
+<script src="js/toggles.min.js"></script>
+<script src="js/retina.min.js"></script>
+<script src="js/jquery.cookies.js"></script>
+<script src="js/bootstrap-timepicker.min.js"></script>
+
+<script src="js/flot/flot.min.js"></script>
+<script src="js/flot/flot.resize.min.js"></script>
+<script src="js/morris.min.js"></script>
+<script src="js/raphael-2.1.0.min.js"></script>
+
+<script src="js/jquery.datatables.min.js"></script>
+<script src="js/chosen.jquery.min.js"></script>
+<script src="js/fullcalendar.min.js"></script>
+
+
+<script src="js/custom.js"></script>
+<script>
+
+
+</script>
+
+<!--script src="js/dashboard.js"></script-->
+
+</ui:insert>
+</ui:body>
+</html>
