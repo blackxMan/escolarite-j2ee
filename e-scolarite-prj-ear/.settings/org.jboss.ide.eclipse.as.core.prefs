@@ -1,0 +1,2 @@
+eclipse.preferences.version=1
+org.jboss.ide.eclipse.as.core.singledeployable.deployableList=resources/h2-1.3.168-redhat-2.jar\nresources/mysql-connector-java-5.1.30-bin.jar\nresources/testing-seam-ds.xml\n

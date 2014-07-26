@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources xmlns="http://www.jboss.org/ironjacamar/schema">
+    <datasource 
+        jndi-name="e-scolarite-prjDatasource"
+        enabled="true" 
+        use-java-context="true" pool-name="e-scolarite-prjDatasource_pool">
+        <connection-url>jdbc:mysql://localhost:3306/escolarite</connection-url>
+        <driver>mysql-connector-java-5.1.30-bin.jar</driver>
+        <security>
+		      <user-name>root</user-name>
+		      <password>001985</password>
+        </security>
+    </datasource>
+</datasources>

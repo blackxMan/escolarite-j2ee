@@ -1,0 +1,16 @@
+action.package=org.escolarite.session
+action.sources=/e-scolarite-prj-ejb/ejbModule
+eclipse.preferences.version=1
+model.package=org.escolarite.entity
+model.sources=/e-scolarite-prj-ejb/ejbModule
+seam.ear.project=e-scolarite-prj-ear
+seam.ejb.project=e-scolarite-prj-ejb
+seam.project.connection.profile=escolarite
+seam.project.deployment.type=ear
+seam.project.settings.version=1.1
+seam.project.web.root.folder=/e-scolarite-prj/WebContent
+seam.runtime.name=jboss-seam-2.3.0.CR1
+seam.test.creating=false
+seam.test.project=e-scolarite-prj-test
+test.package=org.domain.escolariteprj.test
+test.sources=/e-scolarite-prj-test/test-src
