@@ -18,8 +18,8 @@
 
   <title><ui:insert name="title"/></title>
   <ui:insert name="stylesheets">
-  	<h:outputStylesheet name="/css/style.default.css"></h:outputStylesheet>
-  	<h:outputStylesheet name="/css/jquery.datatables.css"></h:outputStylesheet>
+  	<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.requestContextPath}/css/style.default.css"/>
+  	<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.requestContextPath}/css/jquery.datatables.css"/>
   </ui:insert>
   
   
@@ -194,28 +194,28 @@
 </section>
 
 <ui:insert name="javascripts">
-<h:outputScript name="/js/jquery-1.10.2.min.js"></h:outputScript>
-<h:outputScript name="/js/jquery-ui-1.10.3.min.js"></h:outputScript>
-<h:outputScript name="/js/jquery-migrate-1.2.1.min.js"></h:outputScript>
-<h:outputScript name="/js/bootstrap.min.js"></h:outputScript>
-<h:outputScript name="/js/modernizr.min.js"></h:outputScript>
-<h:outputScript name="/js/jquery.sparkline.min.js"></h:outputScript>
-<h:outputScript name="/js/toggles.min.js"></h:outputScript>
-<h:outputScript name="/js/retina.min.js"></h:outputScript>
-<h:outputScript name="/js/jquery.cookies.js"></h:outputScript>
-<h:outputScript name="/js/bootstrap-timepicker.min.js"></h:outputScript>
+<script src="#{facesContext.externalContext.requestContextPath}/js/jquery-1.10.2.min.js"></script>
+<script src="#{facesContext.externalContext.requestContextPath}/js/jquery-ui-1.10.3.min.js"></script>
+<script src="#{facesContext.externalContext.requestContextPath}/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="#{facesContext.externalContext.requestContextPath}/js/bootstrap.min.js"></script>
+<script src="#{facesContext.externalContext.requestContextPath}/js/modernizr.min.js"></script>
+<script src="#{facesContext.externalContext.requestContextPath}/js/jquery.sparkline.min.js"></script>
+<script src="#{facesContext.externalContext.requestContextPath}/js/toggles.min.js"></script>
+<script src="#{facesContext.externalContext.requestContextPath}/js/retina.min.js"></script>
+<script src="#{facesContext.externalContext.requestContextPath}/js/jquery.cookies.js"></script>
+<script src="#{facesContext.externalContext.requestContextPath}/js/bootstrap-timepicker.min.js"></script>
 
-<h:outputScript name="/js/flot/flot.min.js"></h:outputScript>
-<h:outputScript name="/js/flot/flot.resize.min.js"></h:outputScript>
-<h:outputScript name="/js/morris.min.js"></h:outputScript>
-<h:outputScript name="/js/raphael-2.1.0.min.js"></h:outputScript>
+<script src="#{facesContext.externalContext.requestContextPath}/js/flot/flot.min.js"></script>
+<script src="#{facesContext.externalContext.requestContextPath}/js/flot/flot.resize.min.js"></script>
+<script src="#{facesContext.externalContext.requestContextPath}/js/morris.min.js"></script>
+<script src="#{facesContext.externalContext.requestContextPath}/js/raphael-2.1.0.min.js"></script>
 
-<h:outputScript name="/js/jquery.datatables.min.js"></h:outputScript>
-<h:outputScript name="/js/chosen.jquery.min.js"></h:outputScript>
-<h:outputScript name="/js/fullcalendar.min.js"></h:outputScript>
+<script src="#{facesContext.externalContext.requestContextPath}/js/jquery.datatables.min.js"></script>
+<script src="#{facesContext.externalContext.requestContextPath}/js/chosen.jquery.min.js"></script>
+<script src="#{facesContext.externalContext.requestContextPath}/js/fullcalendar.min.js"></script>
 
 
-<h:outputScript name="/js/custom.js"></h:outputScript>
+<script src="#{facesContext.externalContext.requestContextPath}/js/custom.js"></script>
 
 <!--script src="/js/dashboard.js"></script-->
 
