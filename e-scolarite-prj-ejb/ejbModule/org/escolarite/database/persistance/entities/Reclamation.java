@@ -72,7 +72,7 @@ public class Reclamation implements Serializable
 	
 	private short status;
 	
-	@ManyToOne(targetEntity=Reclamation.class)
+	@ManyToOne(targetEntity=ReclamationType.class)
 	@JoinColumns(value = { @JoinColumn(name="reclamationtype_id",referencedColumnName="id") })
 	private ReclamationType reclamationType;
 	
