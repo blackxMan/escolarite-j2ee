@@ -1,0 +1,78 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich" template="layout/layout.xhtml">
+
+	<ui:define name="content">
+		<h:form id="loginForm">
+
+			<div class="panel panel-default">
+
+				<div class="panel-heading">
+					<div class="panel-btns">
+						<a href="#" class="panel-close">&times;</a> <a href="#"
+							class="minimize">&minus;</a>
+					</div>
+					<h4 class="panel-title"> un type de demande</h4>
+					
+				</div>
+
+				<div class="panel-body panel-body-nopadding">
+
+
+
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Code <span
+							class="asterisk">*</span> :
+						</label>
+						<div class="col-sm-6">
+							
+								<h:outputText id="code" value="#{requestTypeHome.instance.code}" styleClass="form-control"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Libelle <span
+							class="asterisk">*</span> :
+						</label>
+						<div class="col-sm-6">
+							<h:outputText id="title" value="#{requestTypeHome.instance.title}" styleClass="form-control"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Max autorise <span
+							class="asterisk">*</span> :
+						</label>
+						<div class="col-sm-6">							
+								<h:outputText id="max_authorized" value="#{requestTypeHome.instance.maxRequest}" styleClass="form-control"/>
+							
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-sm-3 control-label">nombre de demande <span
+							class="asterisk">*</span> :
+						</label>
+						<div class="col-sm-6">							
+								<h:outputText id="requests" value="#{requestTypeHome.instance.requests.size()}" styleClass="form-control"/>
+							
+						</div>
+					</div>
+
+
+
+				</div>
+				<!-- panel-body -->
+
+				
+				<!-- panel-footer -->
+
+			</div>
+			<!-- panel -->
+
+		</h:form>
+	</ui:define>
+</ui:composition>

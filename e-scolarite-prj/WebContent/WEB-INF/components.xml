@@ -31,13 +31,13 @@
    <persistence:managed-persistence-context name="entityManager" auto-create="true"
                       persistence-unit-jndi-name="java:/e-scolarite-prjEntityManagerFactory"/>
 
-   <drools:rule-base name="securityRules">
+   <!--  <drools:rule-base name="securityRules">
       <drools:rule-files>
          <value>/security.drl</value>
       </drools:rule-files>
    </drools:rule-base>
 
-   <security:rule-based-permission-resolver security-rules="#{securityRules}"/>
+  <security:rule-based-permission-resolver security-rules="#{securityRules}"/>
 
    <security:identity authenticate-method="#{authenticator.authenticate}" remember-me="true"/>
 
@@ -46,7 +46,7 @@
    </event>
    <event type="org.jboss.seam.security.loginSuccessful">
       <action execute="#{redirect.returnToCapturedView}"/>
-   </event>
+   </event> -->
 
    <mail:mail-session host="localhost" port="25"/>
 

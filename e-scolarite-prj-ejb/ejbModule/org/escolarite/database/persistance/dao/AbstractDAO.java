@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 
 public abstract class AbstractDAO<T> implements Serializable {
@@ -19,12 +21,16 @@ public abstract class AbstractDAO<T> implements Serializable {
 	
 	public AbstractDAO(Class<T> refClass){
 		this.refClass = refClass;
+		//EntityManagerFactory factory = Persistence.createEntityManagerFactory("e-scolarite-prj");
+		//entityManager = factory.createEntityManager();
 	}
 	
 	
 	
 	public void beginTransaction(){
+		
 		this.entityManager.getTransaction().begin();
+		
 	}
 	
 	public void rollback(){

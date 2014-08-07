@@ -54,7 +54,7 @@ public class Reclamation implements Serializable
 	
 	
 	@NotNull(message="Veuillez remplir l'objet de la reclamation")
-	@Length(max=60,message="l'objet de la reclamation ne doit pas depasse 60 caractere")
+	@Length(max=60,message="l'objet de la reclamation ne doit pas depasser 60 caractere")
 	private String subject;
 	
 	@NotNull(message="Veuillez remplir la description de la reclamation")
@@ -72,7 +72,7 @@ public class Reclamation implements Serializable
 	
 	private short status;
 	
-	@ManyToOne(targetEntity=Reclamation.class)
+	@ManyToOne(targetEntity=ReclamationType.class)
 	@JoinColumns(value = { @JoinColumn(name="reclamationtype_id",referencedColumnName="id") })
 	private ReclamationType reclamationType;
 	

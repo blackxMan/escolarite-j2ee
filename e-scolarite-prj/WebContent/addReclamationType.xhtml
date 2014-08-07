@@ -1,0 +1,102 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.org/schema/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/layout.xhtml">
+
+    <ui:define name="content">
+
+        <h:form id="loginForm">
+
+        <div class="panel panel-default">
+        
+        <div class="panel-heading">
+          <div class="panel-btns">
+            <a href="#" class="panel-close">&times;</a>
+            <a href="#" class="minimize">&minus;</a>
+          </div>
+          <h4 class="panel-title">#{reclamationTypesHome.managed ? 'Modifier' : 'Ajouter'} un type de réclamation</h4>
+          
+        </div>
+
+        <div class="panel-body panel-body-nopadding">
+          
+          
+            
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Code <span class="asterisk">*</span> :</label>
+              <div class="col-sm-6">
+                <h:inputTextarea id="code"
+                               cols="80"
+                               rows="3"
+                           required="true"
+                              value="#{reclamationTypesHome.instance.code}"/>
+              </div>
+            </div>
+       
+           	<div class="form-group">
+              <label class="col-sm-3 control-label" >Libelle <span class="asterisk">*</span> :</label>
+              <div class="col-sm-6">
+                <h:inputTextarea id="title"
+                               cols="80"
+                               rows="3"
+                           required="true"
+                              value="#{reclamationTypesHome.instance.title}"/>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-3 control-label" >max autorise <span class="asterisk">*</span> :</label>
+              <div class="col-sm-6">
+                <h:inputText id="maxAuthorized"
+                       required="true"
+                          value="#{reclamationTypesHome.instance.max_authorized}">
+                    
+                </h:inputText>
+              </div>
+            </div>
+
+        </div><!-- panel-body -->
+        
+      <div class="panel-footer">
+			 <div class="row">
+				<div class="col-sm-6 col-sm-offset-3">
+				  <center>				  	
+				  	<h:commandButton class="btn btn-primary" id="submit" value="Ajouter" action="#{rt.ajouter()}" />
+				  	<h:commandButton id="save"
+				  			class="btn btn-primary"
+                          value="Save"
+                         action="#{reclamationTypesHome.persist}"
+                       disabled="#{!reclamationTypesHome.wired}"
+                       rendered="#{!reclamationTypesHome.managed}"/>
+
+            <h:commandButton id="update"
+            class="btn btn-primary"
+                          value="Save"
+                         action="#{reclamationTypesHome.update}"
+                       rendered="#{reclamationTypesHome.managed}"/>				  
+				  </center>
+				</div>
+			 </div>
+		  </div><!-- panel-footer -->
+      
+      </div><!-- panel -->
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+    </h:form>
+    </ui:define>
+</ui:composition>

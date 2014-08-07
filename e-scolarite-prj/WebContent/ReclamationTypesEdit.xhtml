@@ -1,0 +1,95 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich" template="layout/layout.xhtml">
+
+	<ui:define name="content">
+	
+	
+		<h:form id="loginForm">
+
+			<div class="panel panel-default">
+
+				<div class="panel-heading">
+					<div class="panel-btns">
+						<a href="#" class="panel-close">&times;</a> <a href="#"
+							class="minimize">&minus;</a>
+					</div>
+					<h4 class="panel-title">#{reclamationTypeHome.managed ?
+						'Modifier' : 'Ajouter'} un type de réclamation</h4>
+					<p>Cette interface permet d#{reclamationTypeHome.managed ? 'e
+						modifier' : '\'ajouter'} un type de réclamation.</p>
+				</div>
+
+				<div class="panel-body panel-body-nopadding">
+					<div class="error" style="display:block;padding : 10px 249px;">
+		              <h:messages/>
+		            </div>
+
+
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Code <span
+							class="asterisk">*</span> :
+						</label>
+						<div class="col-sm-6">
+							<h:inputText id="code" styleClass="form-control" required="true"
+								value="#{reclamationTypeHome.instance.code}" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Libelle <span
+							class="asterisk">*</span> :
+						</label>
+						<div class="col-sm-6">
+							<h:inputText id="title" styleClass="form-control" required="true"
+								value="#{reclamationTypeHome.instance.title}" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Max autorise <span
+							class="asterisk">*</span> :
+						</label>
+						<div class="col-sm-6">
+							<h:inputText id="maxAuthorized" required="true" styleClass="form-control" 
+								value="#{reclamationTypeHome.instance.max_authorized}">
+									
+							</h:inputText>
+						</div>
+					</div>
+
+				<div class="error" style="display:block;padding : 10px 249px;">
+		              
+		            </div>
+
+				</div>
+				<!-- panel-body -->
+
+				<div class="panel-footer">
+					<div class="row">
+						<div class="col-sm-6 col-sm-offset-3">
+							<h:commandButton id="save" value="Ajouter"
+								action="#{reclamationTypeHome.persist}"
+								disabled="#{!reclamationTypeHome.wired}"
+								rendered="#{!reclamationTypeHome.managed}"
+								styleClass="btn btn-primary" />
+
+							<h:commandButton id="update" value="Modifier"
+								action="#{reclamationTypeHome.update}"
+								rendered="#{reclamationTypeHome.managed}"
+								styleClass="btn btn-primary" />
+
+						</div>
+					</div>
+				</div>
+				<!-- panel-footer -->
+
+			</div>
+			<!-- panel -->
+
+		</h:form>
+	</ui:define>
+</ui:composition>

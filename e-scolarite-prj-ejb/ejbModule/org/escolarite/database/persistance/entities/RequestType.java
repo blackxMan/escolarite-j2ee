@@ -23,7 +23,7 @@ import javax.validation.constraints.NotNull;
 
 // class de mapping de type de demande
 @Entity
-@Table(name="request_types")
+@Table(name="request_type")
 @NamedQueries({
 	@NamedQuery(name="RequestType.findAll",query="Select rt From RequestType rt")
 	})

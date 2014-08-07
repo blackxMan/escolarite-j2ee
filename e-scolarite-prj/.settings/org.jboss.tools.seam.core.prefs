@@ -10,6 +10,7 @@ seam.project.deployment.type=ear
 seam.project.settings.version=1.1
 seam.project.web.root.folder=/e-scolarite-prj/WebContent
 seam.runtime.name=jboss-seam-2.3.0.CR1
+seam.settings.changed.by.user=true
 seam.test.creating=false
 seam.test.project=e-scolarite-prj-test
 test.package=org.domain.escolariteprj.test

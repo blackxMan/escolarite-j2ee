@@ -19,46 +19,46 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="reclamation_types")
-@NamedQueries({@NamedQuery(name="ReclamationType.getAttachedReclamations",query="Select r From Reclamation r where r.reclamationType = :reclamationType")})
-public class ReclamationType implements Serializable
-{
+@Table(name = "reclamation_types")
+@NamedQueries({ @NamedQuery(name = "ReclamationType.getAttachedReclamations", query = "Select r From Reclamation r where r.reclamationType = :reclamationType") })
+public class ReclamationType implements Serializable {
 	/**
-	 * 
-	 */
+*
+*/
 	private static final long serialVersionUID = -3484101550849856144L;
 
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
-    
-	@NotNull(message="le code est obligatoire.")
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@NotNull(message = "le code est obligatoire.")
 	private String code;
-	
-	@NotNull(message="Veuillez saisir le libelle.")
+
+	@NotNull(message = "Veuillez saisir le libelle.")
 	private String title;
-	
-	@NotNull(message="Veuillez saisir le max autorisee")
+
+	@NotNull(message = "Veuillez saisir le max autorisee")
 	private short max_authorized;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date created_at;
-	
-	
-	@OneToMany(targetEntity=Reclamation.class,mappedBy="reclamationType",cascade={CascadeType.PERSIST,CascadeType.REMOVE})
-	private List<Reclamation> reclamations;
-	
-	public ReclamationType(){
-		this.created_at = new Date();
-		this.reclamations =  new ArrayList<Reclamation>();
-	}
-    
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	@OneToMany(targetEntity = Reclamation.class, mappedBy = "reclamationType", cascade = {
+			CascadeType.PERSIST, CascadeType.REMOVE })
+	private List<Reclamation> reclamations;
+
+	public ReclamationType() {
+		this.created_at = new Date();
+		this.reclamations = new ArrayList<Reclamation>();
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getCode() {
 		return code;
@@ -98,10 +98,8 @@ public class ReclamationType implements Serializable
 
 	public void addReclamation(Reclamation reclamation) {
 		this.reclamations.add(reclamation);
-		if(reclamation.getReclamationType() != this)
+		if (reclamation.getReclamationType() != this)
 			reclamation.setReclamationType(this);
 	}
-    
-    
 
 }
