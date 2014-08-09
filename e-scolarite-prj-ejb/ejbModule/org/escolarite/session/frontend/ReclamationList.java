@@ -1,4 +1,4 @@
-package org.escolarite.session;
+package org.escolarite.session.frontend;
 
 import org.escolarite.database.persistance.entities.Reclamation;
 import org.jboss.seam.annotations.Name;
@@ -8,7 +8,7 @@ import java.util.Arrays;
 @Name("reclamationList")
 public class ReclamationList extends EntityQuery<Reclamation> {
 
-	private static final String EJBQL = "select reclamation from Reclamation reclamation";
+	private static final String EJBQL = "select reclamation from Reclamation reclamation where reclamation.etudiant_id = 1";
 
 	private static final String[] RESTRICTIONS = {
 			"lower(reclamation.description) like lower(concat(#{reclamationList.reclamation.description},'%'))",
@@ -25,6 +25,7 @@ public class ReclamationList extends EntityQuery<Reclamation> {
 	}
 
 	public Reclamation getReclamation() {
+		
 		return reclamation;
 	}
 }

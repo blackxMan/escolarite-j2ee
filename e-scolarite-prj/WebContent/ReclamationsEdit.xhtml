@@ -20,9 +20,9 @@
 						<a href="#" class="panel-close">&times;</a> <a href="#"
 							class="minimize">&minus;</a>
 					</div>
-					<h4 class="panel-title">#{reclamationTypeHome.managed ?
+					<h4 class="panel-title">#{reclamationHome.managed ?
 						'Modifier' : 'Envoyer'} une réclamation</h4>
-					<p>Cette interface permet d#{reclamationTypeHome.managed ? 'e
+					<p>Cette interface permet d#{reclamationHome.managed ? 'e
 						modifier' : '\'envoyer'} une réclamation.</p>
 				</div>
 
@@ -50,20 +50,23 @@
 						<label class="col-sm-3 control-label">Type de reclamation <span
 							class="asterisk">*</span> :
 						</label>
-						<div class="col-sm-6">
-							<h:inputText id="title" styleClass="form-control" required="true"
-								value="#{reclamationTypeHome.instance.title}" />
+						<div class="col-sm-6">							
+							<h:selectOneMenu id="reclamationType" value="#{reclamationHome.instance.reclamationType}" required="true">  
+								<s:selectItems var="_reclamationType" value="#{reclamationT}"  
+								label="#{_reclamationType.title}" noSelectionLabel="-- Select --"/>  
+								     <s:convertEntity/>             
+							</h:selectOneMenu>  
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label">Max autorise <span
+						<label class="col-sm-3 control-label">Description <span
 							class="asterisk">*</span> :
 						</label>
 						<div class="col-sm-6">
-							<h:inputText id="maxAuthorized" required="true" styleClass="form-control" 
-								value="#{reclamationTypeHome.instance.max_authorized}">
+							<h:inputTextarea id="maxAuthorized" required="true" styleClass="form-control" 
+								value="#{reclamationHome.instance.description}">
 									
-							</h:inputText>
+							</h:inputTextarea>
 						</div>
 					</div>
 
@@ -77,15 +80,15 @@
 				<div class="panel-footer">
 					<div class="row">
 						<div class="col-sm-6 col-sm-offset-3">
-							<h:commandButton id="save" value="Ajouter"
-								action="#{reclamationTypeHome.persist}"
-								disabled="#{!reclamationTypeHome.wired}"
-								rendered="#{!reclamationTypeHome.managed}"
+							<h:commandButton id="save" value="Envoyer"
+								action="#{reclamationHome.ajouterReclamation()}"
+								disabled="#{!reclamationHome.wired}"
+								rendered="#{!reclamationHome.managed}"
 								styleClass="btn btn-primary" />
 
 							<h:commandButton id="update" value="Modifier"
-								action="#{reclamationTypeHome.update}"
-								rendered="#{reclamationTypeHome.managed}"
+								action="#{reclamationHome.modifierReclamation()}"
+								rendered="#{reclamationHome.managed}"
 								styleClass="btn btn-primary" />
 
 						</div>
@@ -119,140 +122,3 @@
 
 
 
-<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:s="http://jboss.org/schema/seam/taglib"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:a="http://richfaces.org/a4j"
-    xmlns:rich="http://richfaces.org/rich"
-    template="layout/template.xhtml">
-
-<ui:define name="body">
-
-    <h:form id="reclamations" styleClass="edit">
-
-        <rich:panel>
-            <f:facet name="header">#{reclamationHome.managed ? 'Edit' : 'Add'} Reclamations</f:facet>
-
-
-
-            <s:decorate id="consultedAtField" template="layout/edit.xhtml">
-                <ui:define name="label">Consulted at</ui:define>
-                <rich:calendar id="consultedAt"
-                          value="#{reclamationHome.instance.consultedAt}" datePattern="MM/dd/yyyy hh:mm a"/>
-            </s:decorate>
-
-
-            <s:decorate id="createdAtField" template="layout/edit.xhtml">
-                <ui:define name="label">Created at</ui:define>
-                <rich:calendar id="createdAt"
-                          value="#{reclamationHome.instance.createdAt}" datePattern="MM/dd/yyyy hh:mm a"/>
-            </s:decorate>
-
-
-            <s:decorate id="descriptionField" template="layout/edit.xhtml">
-                <ui:define name="label">Description</ui:define>
-                <h:inputTextarea id="description"
-                               cols="80"
-                               rows="3"
-                           required="true"
-                              value="#{reclamationHome.instance.description}"/>
-            </s:decorate>
-
-
-            <s:decorate id="notifiedField" template="layout/edit.xhtml">
-                <ui:define name="label">Notified</ui:define>
-                <h:inputText id="notified"
-                       required="true"
-                          value="#{reclamationHome.instance.notified}">
-                    <a:ajax event="blur" render="notifiedField" bypassUpdates="true"/>
-                </h:inputText>
-            </s:decorate>
-
-
-            <s:decorate id="responceField" template="layout/edit.xhtml">
-                <ui:define name="label">Responce</ui:define>
-                <h:inputTextarea id="responce"
-                               cols="80"
-                               rows="3"
-                              value="#{reclamationHome.instance.responce}"/>
-            </s:decorate>
-
-
-            <s:decorate id="statusField" template="layout/edit.xhtml">
-                <ui:define name="label">Status</ui:define>
-                <h:inputText id="status"
-                       required="true"
-                          value="#{reclamationHome.instance.status}">
-                    <a:ajax event="blur" render="statusField" bypassUpdates="true"/>
-                </h:inputText>
-            </s:decorate>
-
-
-            <s:decorate id="subjectField" template="layout/edit.xhtml">
-                <ui:define name="label">Subject</ui:define>
-                <h:inputText id="subject"
-                       required="true"
-                           size="60"
-                      maxlength="60"
-                          value="#{reclamationHome.instance.subject}">
-                    <a:ajax event="blur" render="subjectField" bypassUpdates="true"/>
-                </h:inputText>
-            </s:decorate>
-
-
-            <s:decorate id="reclamationtypeIdField" template="layout/edit.xhtml">
-                <ui:define name="label">Reclamationtype id</ui:define>
-                <h:inputText id="reclamationtypeId"
-                          value="#{reclamationHome.instance.reclamationtypeId}">
-                    <a:ajax event="blur" render="reclamationtypeIdField" bypassUpdates="true"/>
-                </h:inputText>
-            </s:decorate>
-
-            <div style="clear:both">
-                <span class="required">*</span>
-                required fields
-            </div>
-
-        </rich:panel>
-
-        <div class="actionButtons">
-
-            <h:commandButton id="save"
-                          value="Save"
-                         action="#{reclamationHome.persist}"
-                       disabled="#{!reclamationHome.wired}"
-                       rendered="#{!reclamationHome.managed}"/>
-
-            <h:commandButton id="update"
-                          value="Save"
-                         action="#{reclamationHome.update}"
-                       rendered="#{reclamationHome.managed}"/>
-
-            <h:commandButton id="delete"
-                          value="Delete"
-                         action="#{reclamationHome.remove}"
-                      immediate="true"
-                       rendered="#{reclamationHome.managed}"/>
-
-            <s:button id="cancelEdit"
-                   value="Cancel"
-             propagation="end"
-                    view="/Reclamations.xhtml"
-                rendered="#{reclamationHome.managed}"/>
-
-            <s:button id="cancelAdd"
-                   value="Cancel"
-             propagation="end"
-                    view="/#{empty reclamationsFrom ? 'ReclamationsList' : reclamationsFrom}.xhtml"
-                rendered="#{!reclamationHome.managed}"/>
-
-        </div>
-    </h:form>
-
-</ui:define>
-
-</ui:composition>

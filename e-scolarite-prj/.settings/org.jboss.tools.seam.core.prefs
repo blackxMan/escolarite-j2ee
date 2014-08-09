@@ -1,4 +1,4 @@
-action.package=org.escolarite.session
+action.package=org.escolarite.session.backend
 action.sources=/e-scolarite-prj-ejb/ejbModule
 eclipse.preferences.version=1
 model.package=org.escolarite.entity

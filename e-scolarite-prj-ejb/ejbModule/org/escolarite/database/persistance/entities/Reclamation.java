@@ -43,11 +43,11 @@ public class Reclamation implements Serializable
 	public static final short HIDE_STUDENT_NOTIFICATION = 3;
 	
 	/**
-	 * status de la demande
+	 * status de la réclamation
 	 */
-	public static final short ACCEPTED = 0;
-	public static final short REJECTED = 1;
-	public static final short IN_PROGRESS = 2;
+	public static final short ACCEPTED = 1;
+	public static final short REJECTED = 2;
+	public static final short IN_PROGRESS = 0;
 
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
@@ -72,6 +72,8 @@ public class Reclamation implements Serializable
 	
 	private short status;
 	
+	private int etudiant_id;
+	
 	@ManyToOne(targetEntity=ReclamationType.class)
 	@JoinColumns(value = { @JoinColumn(name="reclamationtype_id",referencedColumnName="id") })
 	private ReclamationType reclamationType;
@@ -91,6 +93,14 @@ public class Reclamation implements Serializable
     public void setId(Long id) {
         this.id = id;
     }
+
+	public int getEtudiant_id() {
+		return etudiant_id;
+	}
+
+	public void setEtudiant_id(int etudiant_id) {
+		this.etudiant_id = etudiant_id;
+	}
 
 	public String getSubject() {
 		return subject;

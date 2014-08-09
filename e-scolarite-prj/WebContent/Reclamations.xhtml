@@ -6,10 +6,6 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:rich="http://richfaces.org/rich" template="layout/layout.xhtml">
-	
-	<ui:define name="pageTitle">
-		<i class="fa fa-book"></i> Type de Reclamation
-	</ui:define>
 
 	<ui:define name="content">
 		<h:form id="loginForm">
@@ -21,7 +17,7 @@
 						<a href="#" class="panel-close">&times;</a> <a href="#"
 							class="minimize">&minus;</a>
 					</div>
-					<h4 class="panel-title"> un type de réclamation</h4>
+					<h4 class="panel-title"> Détail d'une réclamation</h4>
 					
 				</div>
 
@@ -30,39 +26,39 @@
 
 
 					<div class="form-group">
-						<label class="col-sm-3 control-label">Code <span
+						<label class="col-sm-3 control-label">Objet <span
 							class="asterisk">*</span> :
 						</label>
 						<div class="col-sm-6">
 							
-								<h:outputText id="code" value="#{reclamationTypeHome.instance.code}" styleClass="form-control"/>
+								<h:outputText id="code" value="#{reclamationHome.instance.subject}" styleClass="form-control"/>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label">Libelle <span
+						<label class="col-sm-3 control-label">Type <span
 							class="asterisk">*</span> :
 						</label>
 						<div class="col-sm-6">
-							<h:outputText id="title" value="#{reclamationTypeHome.instance.title}" styleClass="form-control"/>
+							<h:outputText id="title" value="#{reclamationHome.instance.reclamationType.title}" styleClass="form-control"/>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label">Max autorise <span
+						<label class="col-sm-3 control-label">Description <span
 							class="asterisk">*</span> :
 						</label>
 						<div class="col-sm-6">							
-								<h:outputText id="max_authorized" value="#{reclamationTypeHome.instance.max_authorized}" styleClass="form-control"/>
-							
+								<h:outputText id="max_authorized" value="#{reclamationHome.instance.description}" styleClass="form-control"/>							
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-sm-3 control-label">nombre de reclamation <span
+						<label class="col-sm-3 control-label">Status <span
 							class="asterisk">*</span> :
 						</label>
 						<div class="col-sm-6">							
-								<h:outputText id="reclamations" value="#{reclamationTypeHome.instance.reclamations.size()}" styleClass="form-control"/>
-							
+								<h:outputLabel rendered="#{reclamationHome.instance.status==0}">Votre réclamation est en cours de traitement</h:outputLabel>
+								<h:outputLabel rendered="#{reclamationHome.instance.status==2}">Votre réclamation a été rejetée</h:outputLabel>
+								<h:outputLabel rendered="#{reclamationHome.instance.status==1}">Votre réclamation a été acceptée</h:outputLabel>							
 						</div>
 					</div>
 
@@ -80,3 +76,7 @@
 		</h:form>
 	</ui:define>
 </ui:composition>
+
+
+
+

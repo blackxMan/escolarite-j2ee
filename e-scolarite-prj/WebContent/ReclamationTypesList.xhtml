@@ -6,6 +6,10 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:rich="http://richfaces.org/rich" template="layout/layout.xhtml">
+	
+	<ui:define name="pageTitle">
+		<i class="fa fa-book"></i> Type de Reclamation
+	</ui:define>
 
 	<ui:define name="content">
 		<div class="panel panel-default">
@@ -33,15 +37,7 @@
 							code
 						</f:facet>
 						<h:outputText value="#{_reclamationType.code}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">
-							Created at
-						</f:facet>
-						<h:outputText value="#{_reclamationType.createdAt}">
-							<f:convertDateTime type="both" dateStyle="short" />
-						</h:outputText>
-					</h:column>
+					</h:column>					
 					<h:column>
 						<f:facet name="header">
 							Max autorise

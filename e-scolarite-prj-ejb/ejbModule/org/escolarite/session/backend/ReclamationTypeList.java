@@ -1,4 +1,4 @@
-package org.escolarite.session;
+package org.escolarite.session.backend;
 
 import org.escolarite.database.persistance.entities.*;
 import org.jboss.seam.annotations.Name;
@@ -15,8 +15,9 @@ public class ReclamationTypeList extends EntityQuery<ReclamationType> {
 			"lower(reclamationType.title) like lower(concat(#{reclamationTypeList.reclamationType.title},'%'))", };
 
 	private ReclamationType reclamationType = new ReclamationType();
-
+	
 	public ReclamationTypeList() {
+		
 		setEjbql(EJBQL);
 		setRestrictionExpressionStrings(Arrays.asList(RESTRICTIONS));
 		setMaxResults(25);

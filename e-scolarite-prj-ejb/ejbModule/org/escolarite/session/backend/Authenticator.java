@@ -1,4 +1,4 @@
-package org.escolarite.session;
+package org.escolarite.session.backend;
 
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Logger;

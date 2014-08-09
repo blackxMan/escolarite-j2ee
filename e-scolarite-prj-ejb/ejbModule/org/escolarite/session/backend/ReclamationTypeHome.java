@@ -1,4 +1,4 @@
-package org.escolarite.session;
+package org.escolarite.session.backend;
 
 import org.escolarite.database.persistance.entities.*;
 import org.jboss.seam.annotations.Name;
