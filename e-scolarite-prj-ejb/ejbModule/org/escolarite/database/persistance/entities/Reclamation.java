@@ -71,8 +71,8 @@ public class Reclamation implements Serializable
 	private short notified;
 	
 	private short status;
-	
-	private int etudiant_id;
+	// code appoge
+	private String code;
 	
 	@ManyToOne(targetEntity=ReclamationType.class)
 	@JoinColumns(value = { @JoinColumn(name="reclamationtype_id",referencedColumnName="id") })
@@ -94,12 +94,12 @@ public class Reclamation implements Serializable
         this.id = id;
     }
 
-	public int getEtudiant_id() {
-		return etudiant_id;
+	public String getCode() {
+		return code;
 	}
 
-	public void setEtudiant_id(int etudiant_id) {
-		this.etudiant_id = etudiant_id;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getSubject() {

@@ -7,7 +7,7 @@
    <param name="sort" value="#{reclamationsList.orderColumn}"/>
    <param name="dir" value="#{reclamationsList.orderDirection}"/>
    <param name="logic" value="#{reclamationsList.restrictionLogicOperator}"/>
-
+	
    <param name="from"/>
    <param name="description" value="#{reclamationsList.reclamations.description}"/>
    <param name="responce" value="#{reclamationsList.reclamations.responce}"/>

@@ -5,15 +5,19 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:rich="http://richfaces.org/rich" template="layout/layout.xhtml">
-
+	xmlns:rich="http://richfaces.org/rich" template="/layout/layoutFront.xhtml">
+	
+	
+	<ui:define name="pageTitle">
+		<i class="fa fa-book"></i> Réclamation
+	</ui:define>
 	<ui:define name="content">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<div class="panel-btns">
 					<a href="#" class="minimize">&minus;</a>
 				</div>
-				<h4 class="panel-title">Liste des types de demande</h4>
+				<h4 class="panel-title">Liste des réclamations</h4>
 				<p></p>
 			</div>
 
@@ -21,46 +25,53 @@
 				<!-- <rich:dataTable id="requestTypeList" var="_requestType"
 					value="#{requestTypeList.resultList}"
 					rendered="#{not empty requestTypeList.resultList}" columnClasses="table  table-hidaction table-hover" >  -->
-					<h:dataTable headerClass="inverse" rowClasses="odd gradeX" id="requestTypeList" value="#{requestTypeList.resultList}" var="_requestType" rendered="#{not empty requestTypeList.resultList}" styleClass="table  table-hidaction table-hover" >
+					<h:dataTable headerClass="inverse" rowClasses="odd gradeX" id="reclamationList" value="#{reclamationList.resultList}" var="_reclamation" rendered="#{not empty reclamationList.resultList}" styleClass="table  table-hidaction table-hover" >
+					
 					<h:column>
 						<f:facet name="header">
-							Id
+							objet
 						</f:facet>
-						<h:outputText value="#{_requestType.id}" />
+						<h:outputText value="#{_reclamation.subject}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">
-							code
+							type
 						</f:facet>
-						<h:outputText value="#{_requestType.code}" />
-					</h:column>					
-					<h:column>
-						<f:facet name="header">
-							Max autorise
-						</f:facet>
-						<h:outputText value="#{_requestType.maxRequest}" />
+						<h:outputText value="#{_reclamation.reclamationType.title}">
+							<f:convertDateTime type="both" dateStyle="short" />
+						</h:outputText>
 					</h:column>
 					<h:column>
 						<f:facet name="header">
-							libelle
+							Date d'envoie
 						</f:facet>
-						<h:outputText value="#{_requestType.title}" />
+						<h:outputText value="#{_reclamation.createdAt}">
+						<f:convertDateTime pattern="dd-MM-yyyy HH:mm"/>
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							statut
+						</f:facet>
+						<h:outputLabel rendered="#{_reclamation.status==0}"><span class="glyphicon glyphicon-time" title="En cours" data-toggle="tooltip" data-placement="left"></span></h:outputLabel>
+						<h:outputLabel rendered="#{_reclamation.status==2}"><span class="glyphicon glyphicon-ok" title="valide"></span></h:outputLabel>
+						<h:outputLabel rendered="#{_reclamation.status==1}"><span class="glyphicon glyphicon-remove" title="refuse"></span></h:outputLabel>						
 					</h:column>
 					<rich:column styleClass="action">
 						<f:facet name="header">Action</f:facet>
-						<s:link view="/#{empty from ? 'RequestType' : from}.xhtml"
+						<s:link view="/#{empty from ? 'Reclamations' : from}.xhtml"
 							value=""
 							propagation="#{empty from ? 'none' : 'default'}"
-							id="requestTypeViewId">
-							<f:param name="requestTypeId"
-								value="#{_requestType.id}" /><i class="fa fa-list-alt" title="Visualiser"></i>
+							id="reclamationViewId">
+							<f:param name="reclamationsId"
+								value="#{_reclamation.id}" /><i class="fa fa-list-alt" title="Visualiser"></i>
 						</s:link>
             &nbsp;&nbsp;&nbsp;
-            <s:link view="/RequestTypeEdit.xhtml" value=""
+            <s:link view="/ReclamationsEdit.xhtml" value=""
 							propagation="none" id="requestTypeEdit"
-							rendered="#{empty from}">
-							<f:param name="requestTypeId"
-								value="#{_requestType.id}" /><i class="fa fa-pencil" title="modifier"></i>
+							rendered="#{_reclamation.consultedAt == null}">
+							<f:param name="reclamationsId"
+								value="#{_reclamation.id}" /><i class="fa fa-pencil" title="modifier"></i>
 						</s:link>
 					</rich:column>
 				</h:dataTable>
@@ -72,10 +83,10 @@
 					<div class="col-sm-6 col-sm-offset-3">
 						<center>
 							<s:button 
-								view="/RequestTypeEdit.xhtml" id="create"
-								propagation="none" value="Ajouter un nouveau type"
+								view="/ReclamationsEdit.xhtml" id="create"
+								propagation="none" value="Envoyer une réclamation"
 								styleClass="btn btn-primary">
-								<f:param name="requestTypeId" />
+								<f:param name="reclamationId" />
 							</s:button>
 
 						</center>
@@ -90,7 +101,7 @@
 	</ui:define>
 	<ui:define name="javascript">
     jQuery(document).ready(function() {
-      jQuery('#requestTypeList').dataTable({
+      jQuery('#reclamationList').dataTable({
         "sPaginationType": "full_numbers"
       });
     

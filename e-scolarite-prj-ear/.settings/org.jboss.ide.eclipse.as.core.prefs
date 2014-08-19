@@ -1,2 +1,2 @@
 eclipse.preferences.version=1
-org.jboss.ide.eclipse.as.core.singledeployable.deployableList=resources/seamTest-ds.xml\nresources/mysqll-connector-java-5.1.22-bin.jar\nresources/e-scolarite-prj-ds.xml\n
+org.jboss.ide.eclipse.as.core.singledeployable.deployableList=resources/mysqll-connector-java-5.1.22-bin.jar\nresources/e-scolarite-prj-ds.xml\n

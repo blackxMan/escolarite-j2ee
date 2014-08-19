@@ -19,6 +19,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 
 @Table(name="admin")
@@ -41,7 +42,7 @@ public class Admin implements Serializable
     private String lastname;
     
     @NotNull
-    @Pattern(regexp = "")
+    @Email
     private String email;
     
     private Date created_at;

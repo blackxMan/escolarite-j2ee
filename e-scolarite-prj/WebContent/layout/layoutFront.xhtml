@@ -127,7 +127,7 @@
         <input type="text" class="form-control" name="keyword" placeholder="Recherche ici.." />
       </form>
       		<h:form>
-		        <a4j:poll id="poll" interval="5000"  render="poll,dropdown-menu,notifNbre" enabled="true"/>
+		        <a4j:poll id="poll" interval="10000"  render="poll,dropdown-menu,notifNbre"/>
 		     </h:form>
 		    
       <div class="header-right">
@@ -140,7 +140,7 @@
              
               <button id="nbr_notif" class="btn btn-default dropdown-toggle tp-icon" data-toggle="dropdown">
                <i class='glyphicon glyphicon-globe'></i>
-               <span class="badge"><h:outputFormat id="notifNbre" value="#{notificationList.resultList.size()}" /></span>
+               <span class="badge"><h:outputText id="notifNbre" value="#{notificationListFront.resultList.size()}" /></span>
               </button>
               <!-- <div id="dropdown-menu" class="dropdown-menu dropdown-menu-head pull-right" > -->
                <h:panelGroup id="dropdown-menu" layout="block" styleClass="dropdown-menu dropdown-menu-head pull-right">
@@ -149,13 +149,13 @@
                 <ul id="list" class="dropdown-list gen-list"> 
                 
                 	
-						<ui:repeat var="_rec" value="#{notificationList.resultList}">
-							<s:link view="/ReclamationEdit.xhtml" value="" propagation="none" id="reclamationEdit">
+						<ui:repeat var="_rec" value="#{notificationListFront.resultList}">
+							<s:link view="/Reclamations.xhtml" value="" propagation="none" id="reclamations">
 								<f:param name="reclamationsId" value="#{_rec.id}" />
 			                 	<li class="new">
 				                    
 				                    <div class="desc">
-				                      <h5><h:outputText value="#{_rec.code} a envoyé une réclamation" /> <span class="badge badge-success">new</span></h5>
+				                      <h5><h:outputText value="l'admin a repondu à votre réclamation n°#{_rec.id}" /> </h5>
 				                    </div>
 			                  	</li>
 			            	</s:link>
@@ -175,7 +175,7 @@
           <li>
             <div class="btn-group">
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                <img src="../images/photos/loggeduser.png" alt="" />
+                <img src="images/photos/loggeduser.png" alt="" />
                 Fayssal tahtoub-name
                 <span class="caret"></span>
               </button>

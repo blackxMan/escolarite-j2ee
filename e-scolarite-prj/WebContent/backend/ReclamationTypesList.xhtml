@@ -5,10 +5,10 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:rich="http://richfaces.org/rich" template="layout/layout.xhtml">
+	xmlns:rich="http://richfaces.org/rich" template="/layout/layout.xhtml">
 	
 	<ui:define name="pageTitle">
-		<i class="fa fa-book"></i> Type de Reclamation
+		<i class="fa fa-book"></i> Type de Réclamation
 	</ui:define>
 
 	<ui:define name="content">
@@ -17,7 +17,7 @@
 				<div class="panel-btns">
 					<a href="#" class="minimize">&minus;</a>
 				</div>
-				<h4 class="panel-title">Liste des types des réclamations</h4>
+				<h4 class="panel-title">Liste des types de réclamation</h4>
 				<p></p>
 			</div>
 
@@ -53,18 +53,19 @@
 					<rich:column styleClass="action">
 						<f:facet name="header">Action</f:facet>
 						<s:link view="/#{empty from ? 'ReclamationTypes' : from}.xhtml"
-							value="#{empty from ? 'View' : 'Select'}"
+							value="#{empty from ? '' : ''}"
 							propagation="#{empty from ? 'none' : 'default'}"
 							id="reclamationTypeViewId">
 							<f:param name="reclamationTypesId"
 								value="#{_reclamationType.id}" />
+								<i class="fa fa-list-alt" title="Visualiser"></i>
 						</s:link>
-            #{' '}
-            <s:link view="/ReclamationTypesEdit.xhtml" value="Edit"
+            &nbsp;&nbsp;&nbsp;
+            <s:link view="/ReclamationTypesEdit.xhtml" value=""
 							propagation="none" id="reclamationTypeEdit"
 							rendered="#{empty from}">
 							<f:param name="reclamationTypesId"
-								value="#{_reclamationType.id}" />
+								value="#{_reclamationType.id}" /><i class="fa fa-pencil" title="modifier"></i>
 						</s:link>
 					</rich:column>
 				</h:dataTable>

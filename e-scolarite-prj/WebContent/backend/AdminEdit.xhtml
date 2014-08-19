@@ -5,10 +5,11 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:rich="http://richfaces.org/rich" template="layout/layout.xhtml">
+	xmlns:rich="http://richfaces.org/rich" template="/layout/layout.xhtml"
+                xmlns:a4j="http://richfaces.org/a4j">
 	
 	<ui:define name="pageTitle">
-		<i class="fa fa-book"></i> Type de Reclamation
+		<i class="fa fa-book"></i> Administrateur
 	</ui:define>
 	
 	<ui:define name="content">
@@ -23,10 +24,10 @@
 						<a href="#" class="panel-close">&times;</a> <a href="#"
 							class="minimize">&minus;</a>
 					</div>
-					<h4 class="panel-title">#{reclamationTypeHome.managed ?
-						'Modifier' : 'Ajouter'} un type de réclamation</h4>
-					<p>Cette interface permet d#{reclamationTypeHome.managed ? 'e
-						modifier' : '\'ajouter'} un type de réclamation.</p>
+					<h4 class="panel-title">#{adminHome.managed ?
+						'Modifier' : 'Ajouter'} un administrateur</h4>
+					<p>Cette interface permet d#{adminHome.managed ? 'e
+						modifier' : '\'ajouter'} un administrateur.</p>
 				</div>
 
 				<div class="panel-body panel-body-nopadding">
@@ -36,32 +37,50 @@
 
 
 					<div class="form-group">
-						<label class="col-sm-3 control-label">Code <span
+						<label class="col-sm-3 control-label">Nom <span
 							class="asterisk">*</span> :
 						</label>
 						<div class="col-sm-6">
-							<h:inputText id="code" styleClass="form-control" required="true"
-								value="#{reclamationTypeHome.instance.code}" />
+							<h:inputText id="lastname" styleClass="form-control" required="true"
+								value="#{adminHome.instance.lastname}" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label">Libelle <span
+						<label class="col-sm-3 control-label">Prenom <span
 							class="asterisk">*</span> :
 						</label>
 						<div class="col-sm-6">
-							<h:inputText id="title" styleClass="form-control" required="true"
-								value="#{reclamationTypeHome.instance.title}" />
+							<h:inputText id="firstname" styleClass="form-control" required="true"
+								value="#{adminHome.instance.firstname}" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label">Max autorise <span
+						<label class="col-sm-3 control-label">Email <span
 							class="asterisk">*</span> :
 						</label>
 						<div class="col-sm-6">
-							<h:inputText id="maxAuthorized" required="true" styleClass="form-control" 
-								value="#{reclamationTypeHome.instance.max_authorized}">
+							<h:inputText id="email" required="true" styleClass="form-control" 
+								value="#{adminHome.instance.email}">
 									
 							</h:inputText>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Mot de passe <span
+							class="asterisk">*</span> :
+						</label>
+						<div class="col-sm-6">
+							<h:inputSecret id="password" required="true" styleClass="form-control" 
+								value="#{adminHome.instance.password}">									
+							</h:inputSecret>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Verrouillé <span
+							class="asterisk">*</span> :
+						</label>
+						<div class="col-sm-6">
+							<h:selectBooleanCheckbox id="expired" value="#{adminHome.instance.expired}" />
 						</div>
 					</div>
 
@@ -76,14 +95,14 @@
 					<div class="row">
 						<div class="col-sm-6 col-sm-offset-3">
 							<h:commandButton id="save" value="Ajouter"
-								action="#{reclamationTypeHome.persist}"
-								disabled="#{!reclamationTypeHome.wired}"
-								rendered="#{!reclamationTypeHome.managed}"
+								action="#{adminHome.persist}"
+								disabled="#{!adminHome.wired}"
+								rendered="#{!adminHome.managed}"
 								styleClass="btn btn-primary" />
 
 							<h:commandButton id="update" value="Modifier"
-								action="#{reclamationTypeHome.update}"
-								rendered="#{reclamationTypeHome.managed}"
+								action="#{adminHome.update}"
+								rendered="#{adminHome.managed}"
 								styleClass="btn btn-primary" />
 
 						</div>
@@ -97,3 +116,4 @@
 		</h:form>
 	</ui:define>
 </ui:composition>
+
