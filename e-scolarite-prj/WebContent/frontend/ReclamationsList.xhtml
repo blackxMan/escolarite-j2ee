@@ -59,7 +59,7 @@
 					</h:column>
 					<rich:column styleClass="action">
 						<f:facet name="header">Action</f:facet>
-						<s:link view="/#{empty from ? 'Reclamations' : from}.xhtml"
+						<s:link view="/frontend/#{empty from ? 'Reclamations' : from}.xhtml"
 							value=""
 							propagation="#{empty from ? 'none' : 'default'}"
 							id="reclamationViewId">
@@ -67,7 +67,7 @@
 								value="#{_reclamation.id}" /><i class="fa fa-list-alt" title="Visualiser"></i>
 						</s:link>
             &nbsp;&nbsp;&nbsp;
-            <s:link view="/ReclamationsEdit.xhtml" value=""
+            <s:link view="ReclamationsEdit.xhtml" value=""
 							propagation="none" id="requestTypeEdit"
 							rendered="#{_reclamation.consultedAt == null}">
 							<f:param name="reclamationsId"

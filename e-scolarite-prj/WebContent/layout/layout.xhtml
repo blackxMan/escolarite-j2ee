@@ -66,20 +66,23 @@
       <h5 class="sidebartitle">Navigation</h5>
       <ul class="nav nav-pills nav-stacked nav-bracket">
         <ui:insert name="mainMenu">
+        <h:outputFormat rendered="#{s:hasRole('superAdmin')}">
         <li class="nav-parent active">
           <a href="#"><i class="fa fa-home"></i> <span>Configuration</span></a>
           <ul class="children">
             <li>
-              <a href="type-reclamation_new"><i class="fa fa-caret-right"></i>Ajouter typ reclamation</a>
+              
+              <s:link view="/backend/ReclamationTypesEdit.xhtml" ><i class="fa fa-caret-right"></i>Ajouter typ reclamation</s:link>
             </li>
-            <li><a href="type-reclamation"><i class="fa fa-caret-right"></i>Liste typ de reclamation</a></li>
-            <li><a href="type-demande_new"><i class="fa fa-caret-right"></i>Ajouter typ demande</a></li>
-            <li><a href="type-demande"><i class="fa fa-caret-right"></i>Liste typ demande</a></li>
-            <li><a href="import_data"><i class="fa fa-caret-right"></i>Importation</a></li>
-            <li><a href="#"><i class="fa fa-caret-right"></i>Listes des administrateurs</a></li>
-            <li><a href="#"><i class="fa fa-caret-right"></i>Creer un Administrateur</a></li>
+            <li><s:link view="/backend/ReclamationTypesList.xhtml" ><i class="fa fa-caret-right"></i>Liste typ de reclamation</s:link></li>
+            <li><s:link view="/backend/RequestTypeEdit.xhtml" ><i class="fa fa-caret-right"></i>Ajouter typ demande</s:link></li>
+            <li><s:link view="/backend/RequestTypeList.xhtml" ><i class="fa fa-caret-right"></i>Liste typ demande</s:link></li>            
+            <li><s:link view="/backend/AdminList.xhtml" ><i class="fa fa-caret-right"></i>Listes des administrateurs</s:link></li>
+            <li><s:link view="/backend/AdminEdit.xhtml" ><i class="fa fa-caret-right"></i>Creer un Administrateur</s:link></li>
           </ul>
         </li>
+        </h:outputFormat>
+        <h:outputFormat rendered="#{s:hasRole('admin')}">
         <li class="nav-parent">
           <a href="#"><i class="fa fa-home"></i> <span>Reclamations</span></a>
           <ul class="children">
@@ -96,6 +99,7 @@
             </li>
           </ul>
         </li>
+        </h:outputFormat>
         </ui:insert>
       </ul>
       
@@ -176,12 +180,11 @@
             <div class="btn-group">
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                 <img src="../images/photos/loggeduser.png" alt="" />
-                Fayssal tahtoub-name
+                #{credentials.username}
                 <span class="caret"></span>
               </button>
-              <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-                <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Paramètres</a></li>
-                <li><a href="admin_logout"><i class="glyphicon glyphicon-log-out"></i> Déconnexion</a></li>
+              <ul class="dropdown-menu dropdown-menu-usermenu pull-right">                
+                <li><s:link id="menuLogoutId" view="/backend/login.xhtml" action="#{identity.logout}" value="Déconnexion" rendered="#{identity.loggedIn}" propagation="none"/></li>
               </ul>
             </div>
           </li>

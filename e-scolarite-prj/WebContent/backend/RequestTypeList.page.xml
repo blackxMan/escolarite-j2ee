@@ -11,5 +11,5 @@
    <param name="from"/>
    <param name="code" value="#{requestTypeList.requestType.code}"/>
    <param name="title" value="#{requestTypeList.requestType.title}"/>
-
+	<restrict>#{s:hasRole('superAdmin')}</restrict>
 </page>

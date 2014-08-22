@@ -67,7 +67,7 @@
 					</h:column>
 					<rich:column styleClass="action">
 						<f:facet name="header">Action</f:facet>
-						<s:link view="/#{empty from ? 'Admin' : from}.xhtml"
+						<s:link view="/backend/#{empty from ? 'Admin' : from}.xhtml"
 							value="#{empty from ? '' : ''}"
 							propagation="#{empty from ? 'none' : 'default'}"
 							id="adminViewId">
@@ -76,7 +76,7 @@
 								<i class="fa fa-list-alt" title="Visualiser"></i>
 						</s:link>
             &nbsp;&nbsp;&nbsp;
-            <s:link view="/AdminEdit.xhtml" value=""
+            <s:link view="/backend/AdminEdit.xhtml" value=""
 							propagation="none" id="adminEdit"
 							rendered="#{empty from}">
 							<f:param name="adminId"

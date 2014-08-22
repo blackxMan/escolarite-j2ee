@@ -6,6 +6,7 @@
    <param name="reclamationsFrom"/>
    <param name="reclamationsId" value="#{reclamationHome.reclamationId}"/>
    <action execute="#{reclamationHome.vueEtudiant()}" if="#{reclamationHome.instance.notified == 2}"/>
+   <action execute="#{reclamationHome.isItsReclamation()}"/>
 
 
 </page>

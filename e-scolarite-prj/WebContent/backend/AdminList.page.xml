@@ -7,6 +7,7 @@
    <param name="sort" value="#{adminList.orderColumn}"/>
    <param name="dir" value="#{adminList.orderDirection}"/>
    <param name="logic" value="#{adminList.restrictionLogicOperator}"/>
+   <restrict>#{s:hasRole('superAdmin')}</restrict>
 
    <param name="from"/>
    <param name="email" value="#{adminList.admin.email}"/>

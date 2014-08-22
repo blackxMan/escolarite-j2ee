@@ -2,7 +2,7 @@
 <page xmlns="http://jboss.org/schema/seam/pages"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://jboss.org/schema/seam/pages http://jboss.org/schema/seam/pages-2.3.xsd"
-      no-conversation-view-id="/RequestTypeList.xhtml"
+      no-conversation-view-id="/backend/RequestTypeList.xhtml"
       login-required="false">
 
    <begin-conversation join="true" flush-mode="MANUAL"/>
@@ -12,25 +12,25 @@
    <param name="requestTypeFrom"/>
    <param name="requestTypeId" value="#{requestTypeHome.requestTypeId}"/>
 
-
+<restrict>#{s:hasRole('superAdmin')}</restrict>
    <navigation from-action="#{requestTypeHome.persist}">
       <rule if-outcome="persisted">
          <end-conversation/>
-         <redirect view-id="/RequestType.xhtml"/>
+         <redirect view-id="/backend/RequestType.xhtml"/>
       </rule>
    </navigation>
 
    <navigation from-action="#{requestTypeHome.update}">
       <rule if-outcome="updated">
          <end-conversation/>
-         <redirect view-id="/RequestType.xhtml"/>
+         <redirect view-id="/backend/RequestType.xhtml"/>
       </rule>
    </navigation>
 
    <navigation from-action="#{requestTypeHome.remove}">
       <rule if-outcome="removed">
          <end-conversation/>
-         <redirect view-id="/RequestTypeList.xhtml"/>
+         <redirect view-id="/backend/RequestTypeList.xhtml"/>
       </rule>
    </navigation>
 

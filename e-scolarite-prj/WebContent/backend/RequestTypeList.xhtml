@@ -51,7 +51,7 @@
 					</h:column>
 					<rich:column styleClass="action">
 						<f:facet name="header">Action</f:facet>
-						<s:link view="/#{empty from ? 'RequestType' : from}.xhtml"
+						<s:link view="/backend/#{empty from ? 'RequestType' : from}.xhtml"
 							value=""
 							propagation="#{empty from ? 'none' : 'default'}"
 							id="requestTypeViewId">
@@ -59,7 +59,7 @@
 								value="#{_requestType.id}" /><i class="fa fa-list-alt" title="Visualiser"></i>
 						</s:link>
             &nbsp;&nbsp;&nbsp;
-            <s:link view="/RequestTypeEdit.xhtml" value=""
+            <s:link view="/backend/RequestTypeEdit.xhtml" value=""
 							propagation="none" id="requestTypeEdit"
 							rendered="#{empty from}">
 							<f:param name="requestTypeId"

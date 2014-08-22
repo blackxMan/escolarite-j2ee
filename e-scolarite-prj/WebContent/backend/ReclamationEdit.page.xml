@@ -2,8 +2,8 @@
 <page xmlns="http://jboss.org/schema/seam/pages"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://jboss.org/schema/seam/pages http://jboss.org/schema/seam/pages-2.3.xsd"
-      no-conversation-view-id="/ReclamationsList.xhtml"
-      login-required="false">
+      no-conversation-view-id="/backend/ReclamationList.xhtml"
+      login-required="true">
 
    <begin-conversation join="true" flush-mode="MANUAL"/>
 
@@ -13,11 +13,11 @@
    <param name="reclamationsFrom"/>
    <param name="reclamationsId" value="#{reclamationHome.reclamationId}"/>
  
-
+	<restrict>#{s:hasRole('admin')}</restrict>
    <navigation from-action="#{reclamationHome.repondre()}">
       <rule if-outcome="updated">
          <end-conversation/>
-         <redirect view-id="/ReclamationList.xhtml"/>
+         <redirect view-id="/backend/ReclamationList.xhtml"/>
       </rule>      
    </navigation>
 

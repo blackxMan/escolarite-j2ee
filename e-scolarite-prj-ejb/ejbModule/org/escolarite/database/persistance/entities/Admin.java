@@ -35,10 +35,10 @@ public class Admin implements Serializable
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message="Veuillez saisir votre nom")
+    @NotNull(message="Veuillez saisir le nom")
     private String firstname;
     
-    @NotNull(message="Veuillez saisir votre prenom")
+    @NotNull(message="Veuillez saisir le prenom")
     private String lastname;
     
     @NotNull

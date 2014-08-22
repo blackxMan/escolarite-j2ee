@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
+import org.jboss.seam.security.AuthorizationException;
 import javax.persistence.Query;
 
 import org.escolarite.database.persistance.entities.Reclamation;
@@ -141,5 +141,12 @@ public class ReclamationHome extends EntityHome<Reclamation> {
 		
 	}
 	
+	public void isItsReclamation() throws AuthorizationException{
+		
+		Reclamation rec = (Reclamation) this.getEntityManager().createQuery("from Reclamation where id = :id and code = '1'").setParameter("id", instance.getId()).getSingleResult();
+		if(rec == null)
+		throw new AuthorizationException("erreur");
+		
+	}
 
 }
