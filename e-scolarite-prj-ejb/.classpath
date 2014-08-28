@@ -10,5 +10,6 @@
 	<classpathentry kind="lib" path="/e-scolarite-prj-ear/EarContent/jboss-seam.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/JBoss 7.1 Runtime"/>
+	<classpathentry kind="lib" path="C:/Users/info/Desktop/ojdbc14.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
