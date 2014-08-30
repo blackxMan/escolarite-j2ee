@@ -22,10 +22,10 @@ public class Connexion {
 
 			Class.forName(driverName);
 
-			String url = "jdbc:oracle:thin:@196.200.177.7:1521:apotest";
+			String url = "jdbc:oracle:thin:@ip:port:uid";
 
-			String username = "zakaria";
-			String password = "admin";
+			String username = "";
+			String password = "";
 
 			connection = DriverManager.getConnection(url, username, password);
 			return connection;
