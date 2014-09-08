@@ -20,11 +20,15 @@
 				<h4 class="panel-title">Liste des réclamations</h4>
 				<p></p>
 			</div>
-
+		
+		<div class="error" style="display:block;padding : 25px 50px;color: red;">
+              <h:messages />
+            </div>
 			<div class="panel-body">
 				<!-- <rich:dataTable id="requestTypeList" var="_requestType"
 					value="#{requestTypeList.resultList}"
 					rendered="#{not empty requestTypeList.resultList}" columnClasses="table  table-hidaction table-hover" >  -->
+					
 					<h:dataTable headerClass="inverse" rowClasses="odd gradeX" id="reclamationList" value="#{reclamationList.resultList}" var="_reclamation" rendered="#{not empty reclamationList.resultList}" styleClass="table  table-hidaction table-hover" >
 					
 					<h:column>
@@ -67,11 +71,18 @@
 								value="#{_reclamation.id}" /><i class="fa fa-list-alt" title="Visualiser"></i>
 						</s:link>
             &nbsp;&nbsp;&nbsp;
-            <s:link view="ReclamationsEdit.xhtml" value=""
+            <s:link view="/frontend/ReclamationsEdit.xhtml" value=""
 							propagation="none" id="requestTypeEdit"
 							rendered="#{_reclamation.consultedAt == null}">
 							<f:param name="reclamationsId"
 								value="#{_reclamation.id}" /><i class="fa fa-pencil" title="modifier"></i>
+						</s:link>
+						&nbsp;&nbsp;&nbsp;
+            <s:link view="/frontend/ReclamationsList.xhtml" value=""
+							propagation="none" id="reclamationRemove"
+							 action="#{reclamationHome.supprimer()}">
+							<f:param name="reclamationsId"
+								value="#{_reclamation.id}" /><i class="fa fa-trash-o" title="supprimer"></i>
 						</s:link>
 					</rich:column>
 				</h:dataTable>
@@ -83,10 +94,10 @@
 					<div class="col-sm-6 col-sm-offset-3">
 						<center>
 							<s:button 
-								view="/ReclamationsEdit.xhtml" id="create"
-								propagation="none" value="Envoyer une réclamation"
+								view="/frontend/ReclamationsEdit.xhtml" id="creer"
+								propagation="none" value="Ajouter un nouveau type"
 								styleClass="btn btn-primary">
-								<f:param name="reclamationId" />
+								<f:param name="reclamationsId" />
 							</s:button>
 
 						</center>

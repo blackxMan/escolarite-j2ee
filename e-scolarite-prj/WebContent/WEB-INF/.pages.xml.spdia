@@ -57,7 +57,8 @@
   NAME="exception:org.jboss.seam.ConcurrentRequestTimeoutException"
   PATH="org.jboss.seam.ConcurrentRequestTimeoutException"
   SHAPE="24,953,0,0" TYPE="exception" model-entity="SeamPagesDiagramItem"/>
- <item NAME="exception:" SHAPE="24,745,0,0" TYPE="exception" model-entity="SeamPagesDiagramItem">
+ <item ID="java.sql.SQLException" NAME="exception:java.sql.SQLException"
+  PATH="java.sql.SQLException" SHAPE="24,745,0,0" TYPE="exception" model-entity="SeamPagesDiagramItem">
   <output ID="/notfound.xhtml" NAME="output" PATH="/notfound.xhtml"
    TARGET="#xnotfound.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
  </item>
@@ -67,4 +68,15 @@
   SHAPE="376,225,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
  <item NAME="#xbackend#xlogin.xhtml" PATH="/backend/login.xhtml"
   SHAPE="344,849,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item NAME="exception:" SHAPE="24,1057,0,0" TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="/notfound.xhtml" NAME="output" PATH="/notfound.xhtml"
+   TARGET="#xnotfound.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="javax.persistence.NoResultException"
+  NAME="exception:javax.persistence.NoResultException"
+  PATH="javax.persistence.NoResultException" SHAPE="24,1161,0,0"
+  TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="/notfound.xhtml" NAME="output" PATH="/notfound.xhtml"
+   TARGET="#xnotfound.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
 </diagram>

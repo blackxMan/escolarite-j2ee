@@ -2,7 +2,7 @@
 <page xmlns="http://jboss.org/schema/seam/pages"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://jboss.org/schema/seam/pages http://jboss.org/schema/seam/pages-2.3.xsd"
-      no-conversation-view-id="/ReclamationsList.xhtml"
+      no-conversation-view-id="/frontend/ReclamationsList.xhtml"
       
       login-required="false">
 
@@ -12,26 +12,26 @@
 	
    <param name="reclamationsFrom"/>
    <param name="reclamationsId" value="#{reclamationHome.reclamationId}"/>
- 	<rewrite pattern="/reclam"/>
+ 	
 
    <navigation from-action="#{reclamationHome.ajouterReclamation()}">
       <rule if-outcome="persisted">
          <end-conversation/>
-         <redirect view-id="/Reclamations.xhtml"/>
+         <redirect view-id="/frontend/Reclamations.xhtml"/>
       </rule>      
    </navigation>
 
    <navigation from-action="#{reclamationHome.modifierReclamation()}">
       <rule if-outcome="updated">
          <end-conversation/>
-         <redirect view-id="/Reclamations.xhtml"/>
+         <redirect view-id="/frontend/Reclamations.xhtml"/>
       </rule>
    </navigation>
 
    <navigation from-action="#{reclamationHome.remove}">
       <rule if-outcome="removed">
          <end-conversation/>
-         <redirect view-id="/ReclamationsList.xhtml"/>
+         <redirect view-id="/frontend/ReclamationsList.xhtml"/>
       </rule>
    </navigation>
 

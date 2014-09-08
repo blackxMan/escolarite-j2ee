@@ -1,18 +1,17 @@
 package org.escolarite.database.persistance.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.Hashtable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -21,7 +20,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 
 
 // class de mapping de la demande 
@@ -51,9 +49,10 @@ public class Request implements Serializable
 	/**
 	 * status de la demande
 	 */
-	public static final short ACCEPTED = 0;
-	public static final short REJECTED = 1;
-	public static final short IN_PROGRESS = 2;
+	public static final short IN_PROGRESS = 0;
+	public static final short ACCEPTED = 1;
+	public static final short REJECTED = 2;
+	
 	
 	
 	
@@ -64,37 +63,37 @@ public class Request implements Serializable
 	private Date createdAt;// date of creation
 
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIMESTAMP) 
 	private Date updatedAt;// date of update
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIMESTAMP) 
 	private Date meetingDate;// la date du rendu vous
 	
-	@NotNull
+	
 	private String notice;// la remarque
 	
-	private short notified;// aide la gestion du notification 
+	private short notified = 0;// aide la gestion du notification 
 	
-	private short status;// aide a determi
+	private short status = 0;// aide a determi
 	
 	@ManyToOne(targetEntity=RequestType.class)
 	@JoinColumn(name="requesttype_id",referencedColumnName="id")
 	private RequestType requestType;
+	
 	
 	@OneToMany(targetEntity=RequestState.class,mappedBy="request",cascade={CascadeType.PERSIST,CascadeType.REMOVE})
 	private List<RequestState> requestStates;
 	
 	
 	@ElementCollection
-	private Map<String,String> datas = new Hashtable<String,String>();
+	private Collection<String> datas = new ArrayList<String>();
 	
 	private String code;// le code appoge
 	
 	
 	public Request(){
 		this.requestStates = new ArrayList<RequestState>();
-		this.createdAt = new Date();
-		this.updatedAt = new Date();
+		this.createdAt = new Date();				
 	}
 	
 	public void setId(Long id){
@@ -156,11 +155,11 @@ public class Request implements Serializable
 		this.status = status;
 	}
 
-	public Map<String,String> getDatas() {
-		return this.datas;
+	public Collection<String> getDatas() {
+		return this.datas;		
 	}
 
-	public void setDatas(Map<String,String> datas) {
+	public void setDatas(Collection<String> datas) {
 		this.datas = datas;
 	}
 
@@ -182,6 +181,14 @@ public class Request implements Serializable
 
 	public List<RequestState> getRequestStates() {
 		return requestStates;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public void addRequestState(RequestState requestState) {

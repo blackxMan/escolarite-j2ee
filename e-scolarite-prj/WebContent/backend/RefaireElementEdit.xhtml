@@ -1,0 +1,111 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich" template="/layout/layout.xhtml"
+                xmlns:a="http://richfaces.org/a4j">
+	<ui:define name="pageTitle">
+		<i class="fa fa-book"></i> Demande de refaire un élément
+	</ui:define>
+	<ui:define name="content">
+	
+	
+		<h:form id="loginForm">
+
+			<div class="panel panel-default">
+
+				<div class="panel-heading">
+					<div class="panel-btns">
+						<a href="#" class="panel-close">&times;</a> <a href="#"
+							class="minimize">&minus;</a>
+					</div>
+					<h4 class="panel-title">Répondre à une damande</h4>
+					<p>Cette interface permet de répondre à une demande.</p>
+				</div>
+
+				<div class="panel-body panel-body-nopadding">
+					<div class="error" style="display:block;padding : 10px 249px;">
+		              <h:messages/>
+		            </div>
+
+
+					<div class="form-group">
+						<label class="col-sm-3 control-label">code appoge  :
+						</label>
+						<div class="col-sm-6">
+							<h:outputText id="subject"			                       
+			                          value="#{refaireElementHome.instance.code}"
+			                          styleClass="form-control">
+			                    
+			                </h:outputText>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Date d'envoie  :
+						</label>
+						<div class="col-sm-6">
+							<h:outputText id="created_At"
+			                      value="#{refaireElementHome.instance.createdAt}"
+			                          
+			                          styleClass="form-control">
+			                          <f:convertDateTime pattern="dd-MM-yyyy HH:mm"/>
+			                    
+			                </h:outputText>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Elements demandés :
+						</label>
+						<div class="col-sm-6">							
+							<ui:repeat var="d" value="#{refaireElementHome.instance.datas}">
+								<h:outputText value="#{d} " />
+							</ui:repeat>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Avis :
+						</label>
+						<div class="col-sm-6">
+							<h:inputTextarea id="responce" styleClass="form-control" 
+								value="#{refaireElementHome.instance.notice}">
+									
+							</h:inputTextarea>
+						</div>
+					</div>
+				<div class="error" style="display:block;padding : 10px 249px;">
+		              
+		            </div>
+
+				</div>
+				<!-- panel-body -->
+
+				<div class="panel-footer">
+					<div class="row">
+						<div class="col-sm-6 col-sm-offset-3">
+							<h:commandButton id="accept" value="Accepter"
+								action="#{refaireElementHome.accepter()}"
+								
+								
+								styleClass="btn btn-primary" />	
+								
+								<h:commandButton id="reject" value="Refusez"
+								action="#{refaireElementHome.refuser()}"
+								
+								
+								styleClass="btn btn-primary" />						
+						</div>
+					</div>
+				</div>
+				<!-- panel-footer -->
+
+			</div>
+			<!-- panel -->
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+

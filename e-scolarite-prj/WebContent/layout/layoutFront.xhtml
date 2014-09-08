@@ -47,7 +47,7 @@
         <!-- This is only visible to small devices -->
         <div class="visible-xs hidden-sm hidden-md hidden-lg">   
             <div class="media userlogged">
-                <img alt="" src="images/photos/loggeduser.png" class="media-object"/>
+                <img alt="" src="../images/photos/loggeduser.png" class="media-object"/>
                 <div class="media-body">
                     <h4>John Doe</h4>
                     <span>"Life is so..."</span>
@@ -127,29 +127,30 @@
         <input type="text" class="form-control" name="keyword" placeholder="Recherche ici.." />
       </form>
       		<h:form>
-		        <a4j:poll id="poll" interval="10000"  render="poll,dropdown-menu,notifNbre"/>
+		        <a4j:poll id="poll" interval="10000"  render="poll,dropdown-menu" limitToList="true" ajaxSingle="true" enabled="false"/>
 		     </h:form>
-		    
-      <div class="header-right">
+		   <h:form> 
+      <a4j:region id="dropdown-menu">
+      <h:panelGroup id="tttt" layout="block" styleClass="header-right">
         <ul class="headermenu">
           
           <li>
-          <h:form>
+          
                
              <div id="divreload" class="btn-group">
              
               <button id="nbr_notif" class="btn btn-default dropdown-toggle tp-icon" data-toggle="dropdown">
                <i class='glyphicon glyphicon-globe'></i>
-               <span class="badge"><h:outputText id="notifNbre" value="#{notificationListFront.resultList.size()}" /></span>
+               <span class="badge"><h:outputText id="notifNbre" value="#{notificationListFrontRec.resultList.size()}" /></span>
               </button>
-              <!-- <div id="dropdown-menu" class="dropdown-menu dropdown-menu-head pull-right" > -->
-               <h:panelGroup id="dropdown-menu" layout="block" styleClass="dropdown-menu dropdown-menu-head pull-right">
+              <div id="dropdown-menu" class="dropdown-menu dropdown-menu-head pull-right" >
+               <!-- <h:panelGroup id="dropdown-menu" layout="block" styleClass="dropdown-menu dropdown-menu-head pull-right">  -->
                  <h5  class='title'></h5>
 				
                 <ul id="list" class="dropdown-list gen-list"> 
                 
                 	
-						<ui:repeat var="_rec" value="#{notificationListFront.resultList}">
+						<ui:repeat var="_rec" value="#{notificationListFrontRec.resultList}">
 							<s:link view="/Reclamations.xhtml" value="" propagation="none" id="reclamations">
 								<f:param name="reclamationsId" value="#{_rec.id}" />
 			                 	<li class="new">
@@ -164,18 +165,58 @@
                   
                   
                 </ul>
-                 </h:panelGroup>
-              <!-- </div>  -->
+               <!--  </h:panelGroup> -->
+               </div> 
               
            </div> 
            
-           </h:form>
+          
+          </li>
+          
+          <li>
+          
+               
+             <div id="divreload" class="btn-group">
+             
+              <button id="nbr_notif" class="btn btn-default dropdown-toggle tp-icon" data-toggle="dropdown">
+               <i class='glyphicon glyphicon-globe'></i>
+               <span class="badge"><h:outputFormat id="notifNbre-request" value="#{notificationListFrontReq.resultList.size()}" /></span>
+              </button>
+               <div id="dropdown-menu" class="dropdown-menu dropdown-menu-head pull-right" > 
+               <!--<h:panelGroup id="dropdown-menu-request" layout="block" styleClass="dropdown-menu dropdown-menu-head pull-right"> -->
+                 <h5  class='title'></h5>
+				
+                <ul id="list" class="dropdown-list gen-list"> 
+                
+                	
+						<ui:repeat var="_rec" value="#{notificationListFrontReq.resultList}">
+							<s:link view='/frontend/#{_rec.requestType.code.equals("ER") ? "RefaireElement" : RequestEdit}.xhtml' value="" propagation="none" id="request">
+								<f:param name="requestId" value="#{_rec.id}" />
+			                 	<li class="new">
+				                    
+				                    <div class="desc">
+				                      <h5><h:outputText value="Demande n°#{_rec.id}" /> <span class="badge badge-success">new</span></h5>
+				                    </div>
+			                  	</li>
+			            	</s:link>
+                 		</ui:repeat>
+                     
+                  
+                  
+                </ul>
+                 <!--</h:panelGroup> -->
+              </div>
+              
+           </div> 
+           
+           
+           
           </li>
           
           <li>
             <div class="btn-group">
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                <img src="images/photos/loggeduser.png" alt="" />
+                <img src="../images/photos/loggeduser.png" alt="" />
                 Fayssal tahtoub-name
                 <span class="caret"></span>
               </button>
@@ -186,8 +227,10 @@
             </div>
           </li>
         </ul>
-      </div><!-- header-right -->
-      
+        </h:panelGroup>
+        </a4j:region>
+      <!-- header-right -->
+      </h:form>
     </div><!-- headerbar -->
     
     <div class="pageheader">

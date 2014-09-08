@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.org/schema/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.org/schema/seam/pages http://jboss.org/schema/seam/pages-2.3.xsd"
+      login-required="true">
+
+   <param name="firstResult" value="#{refaireElementList.firstResult}"/>
+   <param name="sort" value="#{refaireElementList.orderColumn}"/>
+   <param name="dir" value="#{refaireElementList.orderDirection}"/>
+   <param name="logic" value="#{refaireElementList.restrictionLogicOperator}"/>
+	<restrict>#{s:hasRole('admin')}</restrict>
+   <param name="from"/>
+   <param name="code" value="#{refaireElementList.requests.code}"/>
+   <param name="notice" value="#{refaireElementList.requests.notice}"/>
+
+</page>

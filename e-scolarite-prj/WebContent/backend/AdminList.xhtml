@@ -82,6 +82,15 @@
 							<f:param name="adminId"
 								value="#{_admin.id}" /><i class="fa fa-pencil" title="modifier"></i>
 						</s:link>
+						&nbsp;&nbsp;&nbsp;
+             <s:link action="#{adminHome.remove()}"
+							propagation="none" id="adminRemove"
+							rendered="#{empty from}">
+							<f:param name="adminId"
+								value="#{_admin.id}" /><i class="fa fa-trash-o" title ="supprimer"></i>
+						</s:link> 
+						
+						
 					</rich:column>
 				</h:dataTable>
 			</div>
@@ -91,12 +100,10 @@
 				<div class="row">
 					<div class="col-sm-6 col-sm-offset-3">
 						<center>
-							<s:button 
-								view="/AdminEdit.xhtml" id="create"
+							
+							<h:button outcome="/backend/AdminEdit.xhtml" id="create"
 								propagation="none" value="Ajouter un nouveau administrateur"
-								styleClass="btn btn-primary">
-								<f:param name="adminId" />
-							</s:button>
+								styleClass="btn btn-primary"></h:button>
 
 						</center>
 					</div>

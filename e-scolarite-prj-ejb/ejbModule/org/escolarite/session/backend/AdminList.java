@@ -1,11 +1,14 @@
 package org.escolarite.session.backend;
 
 import org.escolarite.database.persistance.entities.Admin;
+import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.Scope;
 import org.jboss.seam.framework.EntityQuery;
 import java.util.Arrays;
 
 @Name("adminList")
+@Scope(ScopeType.EVENT)
 public class AdminList extends EntityQuery<Admin> {
 
 	private static final String EJBQL = "select admin from Admin admin";

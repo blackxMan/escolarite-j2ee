@@ -9,6 +9,12 @@
    </rule>
   </navigation>
  </page>
+ 
+ <exception class="javax.persistence.NoResultException">
+  <redirect view-id="/notfound.xhtml">
+   <message severity="warn">Record not found</message>
+  </redirect>
+ </exception>
  <exception class="org.jboss.seam.framework.EntityNotFoundException">
   <redirect view-id="/notfound.xhtml">
    <message severity="warn">Record not found</message>
@@ -25,6 +31,12 @@
   </redirect>
  </exception>
  <exception class="javax.persistence.OptimisticLockException">
+  <end-conversation/>
+  <redirect view-id="/notfound.xhtml">
+   <message severity="warn">Another user changed the same data, please try again</message>
+  </redirect>
+ </exception>
+ <exception class="java.sql.SQLException">
   <end-conversation/>
   <redirect view-id="/notfound.xhtml">
    <message severity="warn">Another user changed the same data, please try again</message>

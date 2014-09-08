@@ -1,0 +1,101 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich" template="/layout/layoutFront.xhtml"
+                xmlns:a="http://richfaces.org/a4j">
+	<ui:define name="pageTitle">
+		<i class="fa fa-book"></i> Demande de refaire un élément
+	</ui:define>
+	<ui:define name="content">
+	
+	
+		
+
+			<div class="panel panel-default">
+
+				<div class="panel-heading">
+					<div class="panel-btns">
+						<a href="#" class="panel-close">&times;</a> <a href="#"
+							class="minimize">&minus;</a>
+					</div>
+					
+					<p></p>
+						
+						<center><h:panelGroup styleClass="alert alert-success" rendered="#{ElementRefaire.instance.status==1}">		              
+		                	Votre demande a été validée
+		              	</h:panelGroup>
+		            
+			            <h:panelGroup styleClass="alert alert-danger" rendered="#{ElementRefaire.instance.status==2}">
+			                Votre demande a été refusée
+			            </h:panelGroup>
+			            
+			            <h:panelGroup styleClass="alert alert-success" rendered="#{ElementRefaire.instance.status==0}">
+			                Votre demande est en cours de traitement
+			            </h:panelGroup></center>
+           
+				</div>
+
+				<div class="panel-body panel-body-nopadding">
+					<div class="error" style="display:block;padding : 10px 249px;">
+		              <h:messages/>
+		            </div>
+
+
+					
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Date d'envoie  :
+						</label>
+						<div class="col-sm-6">
+							<h:outputText id="created_At"
+			                      value="#{ElementRefaire.instance.createdAt}"
+			                          
+			                          styleClass="form-control">
+			                          <f:convertDateTime pattern="dd-MM-yyyy HH:mm"/>
+			                    
+			                </h:outputText>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Elements demandés :
+						</label>
+						<div class="col-sm-6">
+							<ul>							
+							<ui:repeat var="d" value="#{ElementRefaire.libElemDemande}">
+								<li><h:outputText value="#{d} " /></li>
+							</ui:repeat>
+							</ul>
+						</div>
+					</div>
+					<h:panelGroup styleClass="form-group" rendered="#{ElementRefaire.instance.notice!=null}">
+					
+						<label class="col-sm-3 control-label">Avis :
+						</label>
+						<div class="col-sm-6">
+							<h:outputText  id="responce" styleClass="form-control" 
+								value="#{ElementRefaire.instance.notice}">
+									
+							</h:outputText>
+						</div>
+					
+					</h:panelGroup>
+				<div class="error" style="display:block;padding : 10px 249px;">
+		              
+		            </div>
+
+				</div>
+				<!-- panel-body -->
+
+				
+				<!-- panel-footer -->
+
+			</div>
+			<!-- panel -->
+
+		
+	</ui:define>
+</ui:composition>
+

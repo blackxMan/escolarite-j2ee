@@ -22,13 +22,11 @@ public class ReclamationHome extends EntityHome<Reclamation> {
 	@Logger
 	private Log log;
 
-	public void setReclamationId(Long id) {
-		log.info("setReclamationId : " + id);
+	public void setReclamationId(Long id) {		
 		setId(id);
 	}
 
-	public Long getReclamationId() {
-		log.info("getReclamationId : ");
+	public Long getReclamationId() {		
 		return (Long) getId();
 	}
 
@@ -141,12 +139,21 @@ public class ReclamationHome extends EntityHome<Reclamation> {
 		
 	}
 	
-	public void isItsReclamation() throws AuthorizationException{
-		
+	public void isItsReclamation() throws AuthorizationException{		
 		Reclamation rec = (Reclamation) this.getEntityManager().createQuery("from Reclamation where id = :id and code = '1'").setParameter("id", instance.getId()).getSingleResult();
 		if(rec == null)
 		throw new AuthorizationException("erreur");
 		
 	}
+	
+	public String supprimer(){
+		this.wire();
+		FacesMessages.instance().clear();
+		if(this.instance.getStatus()!=0)
+			FacesMessages.instance().add("Reclamation deja validée");
+		else this.remove();
+		return "removed";
+	}
+	
 
 }

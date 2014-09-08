@@ -65,6 +65,16 @@
 							<f:param name="requestTypeId"
 								value="#{_requestType.id}" /><i class="fa fa-pencil" title="modifier"></i>
 						</s:link>
+						
+						&nbsp;&nbsp;&nbsp;
+            <s:link value="" action="#{requestTypeHome.remove()}"
+							propagation="none" id="requestTypeRemove"
+							rendered="#{empty from}">
+							<f:param name="requestTypeId"
+								value="#{_requestType.id}" /><i class="fa fa-trash-o" title="supprimer"></i>
+						</s:link>
+						
+            
 					</rich:column>
 				</h:dataTable>
 			</div>
@@ -75,7 +85,7 @@
 					<div class="col-sm-6 col-sm-offset-3">
 						<center>
 							<s:button 
-								view="/RequestTypeEdit.xhtml" id="create"
+								view="/backend/RequestTypeEdit.xhtml" id="create"
 								propagation="none" value="Ajouter un nouveau type"
 								styleClass="btn btn-primary">
 								<f:param name="requestTypeId" />

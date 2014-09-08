@@ -33,7 +33,7 @@ public class Authenticator {
 			
 			if(credentials.getUsername().equals(this.username) && credentials.getPassword().equals(this.password)){
 				identity.addRole("superAdmin");
-				log.info("okkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+				
 				return true;
 			}
 			Admin admin = (Admin) entityManager

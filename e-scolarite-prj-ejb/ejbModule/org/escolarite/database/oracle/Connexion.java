@@ -7,25 +7,29 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
+import org.jboss.seam.annotations.AutoCreate;
+import org.jboss.seam.annotations.Name;
+@Name(value = "connexion")
+@AutoCreate
 public class Connexion {
 
-	private static Connection connection = null;
+	 Connection connection = null;
 
-	private Connexion() {
+	public Connexion() {
 
 	}
 
-	public static Connection getConnection() throws ClassNotFoundException,
+	public  Connection getConnection() throws ClassNotFoundException,
 			SQLException {
 		if (connection == null) {
 			String driverName = "oracle.jdbc.driver.OracleDriver";
 
 			Class.forName(driverName);
 
-			String url = "jdbc:oracle:thin:@ip:port:uid";
+			String url = "jdbc:oracle:thin:@196.200.177.7:1521:apotest";
 
-			String username = "";
-			String password = "";
+			String username = "zakaria";
+			String password = "admin";
 
 			connection = DriverManager.getConnection(url, username, password);
 			return connection;
@@ -36,7 +40,7 @@ public class Connexion {
 
 	}
 
-	public static ResultSet createQuery(String req) throws SQLException, ClassNotFoundException {
+	public  ResultSet createQuery(String req) throws SQLException, ClassNotFoundException {
 		Statement st = getConnection().createStatement();
 		ResultSet rs = st.executeQuery(req);
 		//connection.close();		

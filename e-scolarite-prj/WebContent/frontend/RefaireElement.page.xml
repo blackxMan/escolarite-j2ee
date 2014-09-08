@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.org/schema/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.org/schema/seam/pages http://jboss.org/schema/seam/pages-2.3.xsd"
+      no-conversation-view-id="/backend/RefaireElementList.xhtml"
+      login-required="false">
+
+   
+	
+   
+	<action execute="#{ElementRefaire.wire()}"/>
+   
+   <param name="requestId" value="#{ElementRefaire.requestId}"/>
+   <action execute="#{ElementRefaire.isItsDemande()}"/>
+   <action execute="#{ElementRefaire.vueEtudiant()}"/>
+
+
+   
+
+
+</page>

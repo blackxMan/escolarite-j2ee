@@ -61,5 +61,7 @@ public class ReclamationHome extends EntityHome<Reclamation> {
 		return this.update();		
 	}
 	
+	
+	
 
 }

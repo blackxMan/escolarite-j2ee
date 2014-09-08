@@ -27,11 +27,6 @@
       </rule>
    </navigation>
 
-   <navigation from-action="#{adminHome.remove}">
-      <rule if-outcome="removed">
-         <end-conversation/>
-         <redirect view-id="/backend/AdminList.xhtml"/>
-      </rule>
-   </navigation>
+   
 
 </page>

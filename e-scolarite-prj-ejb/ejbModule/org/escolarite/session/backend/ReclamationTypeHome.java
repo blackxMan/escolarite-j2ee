@@ -1,10 +1,13 @@
 package org.escolarite.session.backend;
 
 import org.escolarite.database.persistance.entities.*;
+import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.Scope;
 import org.jboss.seam.framework.EntityHome;
 
 @Name("reclamationTypeHome")
+@Scope(ScopeType.EVENT)
 public class ReclamationTypeHome extends EntityHome<ReclamationType> {
 
 	public void setReclamationTypesId(Long id) {

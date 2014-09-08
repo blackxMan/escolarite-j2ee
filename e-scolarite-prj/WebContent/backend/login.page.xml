@@ -3,10 +3,19 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://jboss.org/schema/seam/pages http://jboss.org/schema/seam/pages-2.3.xsd">
 
+   
+   
+   
    <navigation from-action="#{identity.login}">
-      <rule if="#{identity.loggedIn}">
+      <rule if="#{identity.loggedIn and s:hasRole('admin')}">
          <redirect view-id="/backend/ReclamationList.xhtml"/>
       </rule>
+      <rule if="#{identity.loggedIn and s:hasRole('superAdmin')}">
+         <redirect view-id="/backend/AdminList.xhtml"/>
+      </rule>
    </navigation>
+   
+   
+  
 
 </page>
