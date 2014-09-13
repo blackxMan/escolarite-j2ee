@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <diagram model-entity="SeamPagesDiagram">
- <item ID="*" NAME="*" PATH="*" SHAPE="24,17,0,0" TYPE="page" model-entity="SeamPagesDiagramItem">
-  <output ID="/home.xhtml" NAME="output" PATH="/home.xhtml"
-   TARGET="#xhome.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
- </item>
  <item ID="org.jboss.seam.framework.EntityNotFoundException"
   NAME="exception:org.jboss.seam.framework.EntityNotFoundException"
   PATH="org.jboss.seam.framework.EntityNotFoundException"
@@ -39,13 +35,6 @@
   <output ID="/notfound.xhtml" NAME="output" PATH="/notfound.xhtml"
    TARGET="#xnotfound.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
  </item>
- <item ID="org.jboss.seam.security.NotLoggedInException"
-  NAME="exception:org.jboss.seam.security.NotLoggedInException"
-  PATH="org.jboss.seam.security.NotLoggedInException" SHAPE="24,849,0,0"
-  TYPE="exception" model-entity="SeamPagesDiagramItem">
-  <output ID="/backend/login.xhtml" NAME="output"
-   PATH="/backend/login.xhtml" TARGET="#xbackend#xlogin.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
- </item>
  <item ID="javax.faces.application.ViewExpiredException"
   NAME="exception:javax.faces.application.ViewExpiredException"
   PATH="javax.faces.application.ViewExpiredException" SHAPE="24,641,0,0"
@@ -62,12 +51,8 @@
   <output ID="/notfound.xhtml" NAME="output" PATH="/notfound.xhtml"
    TARGET="#xnotfound.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
  </item>
- <item NAME="#xhome.xhtml" PATH="/home.xhtml" SHAPE="344,17,0,0"
-  TYPE="page" model-entity="SeamPagesDiagramItem"/>
  <item NAME="#xnotfound.xhtml" PATH="/notfound.xhtml"
   SHAPE="376,225,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
- <item NAME="#xbackend#xlogin.xhtml" PATH="/backend/login.xhtml"
-  SHAPE="344,849,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
  <item NAME="exception:" SHAPE="24,1057,0,0" TYPE="exception" model-entity="SeamPagesDiagramItem">
   <output ID="/notfound.xhtml" NAME="output" PATH="/notfound.xhtml"
    TARGET="#xnotfound.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
@@ -79,4 +64,20 @@
   <output ID="/notfound.xhtml" NAME="output" PATH="/notfound.xhtml"
    TARGET="#xnotfound.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
  </item>
+ <item ID="com.sun.faces.context.FacesFileNotFoundException"
+  NAME="exception:com.sun.faces.context.FacesFileNotFoundException"
+  PATH="com.sun.faces.context.FacesFileNotFoundException"
+  SHAPE="24,1265,0,0" TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="/notfound.xhtml" NAME="output" PATH="/notfound.xhtml"
+   TARGET="#xnotfound.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="org.jboss.seam.security.NotLoggedInException"
+  NAME="exception:org.jboss.seam.security.NotLoggedInException"
+  PATH="org.jboss.seam.security.NotLoggedInException"
+  SHAPE="24,1369,0,0" TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="/backend/login.xhtml" NAME="output"
+   PATH="/backend/login.xhtml" TARGET="#xbackend#xlogin.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="#xbackend#xlogin.xhtml" PATH="/backend/login.xhtml"
+  SHAPE="344,1369,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
 </diagram>

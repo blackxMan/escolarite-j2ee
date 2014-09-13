@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.org/schema/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.org/schema/seam/pages http://jboss.org/schema/seam/pages-2.3.xsd"
+      login-required="true">
+      <restrict>#{s:hasRole('superAdmin')}</restrict>
+	<param name="adminId" value="#{adminHome.adminId}"/>
+   <param name="firstResult" value="#{adminList.firstResult}"/>
+   <param name="sort" value="#{adminList.orderColumn}"/>
+   <param name="dir" value="#{adminList.orderDirection}"/>
+   <param name="logic" value="#{adminList.restrictionLogicOperator}"/>
+   
+
+   <param name="from"/>
+   <param name="email" value="#{adminList.admin.email}"/>
+   <param name="firstname" value="#{adminList.admin.firstname}"/>
+   <param name="lastname" value="#{adminList.admin.lastname}"/>
+   <param name="password" value="#{adminList.admin.password}"/>
+   
+   <navigation from-action="#{adminHome.remove()}">
+      <rule if-outcome="removed">
+         <end-conversation/>
+         <redirect view-id="/backend/admin/AdminList.xhtml"/>
+      </rule>
+   </navigation>
+
+</page>

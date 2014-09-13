@@ -31,13 +31,13 @@ public class ReclamationType implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotNull(message = "le code est obligatoire.")
+	@NotNull(message = "Veuillez entrer le code.")
 	private String code;
 
-	@NotNull(message = "Veuillez saisir le libelle.")
+	@NotNull(message = "Veuillez entrer le libelle.")
 	private String title;
 
-	@NotNull(message = "Veuillez saisir le max autorisee")
+	@NotNull(message = "Veuillez entrer le max autorisee")
 	private short max_authorized;
 
 	@Temporal(TemporalType.TIMESTAMP)

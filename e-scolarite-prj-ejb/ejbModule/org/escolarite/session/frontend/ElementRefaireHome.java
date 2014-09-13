@@ -5,7 +5,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,6 +17,7 @@ import org.escolarite.database.oracle.ElementPedagogi;
 import org.escolarite.database.persistance.entities.Reclamation;
 import org.escolarite.database.persistance.entities.Request;
 import org.escolarite.database.persistance.entities.RequestType;
+import org.escolarite.session.backend.CustomIdentity;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Logger;
@@ -24,6 +27,7 @@ import org.jboss.seam.faces.FacesMessages;
 import org.jboss.seam.framework.EntityHome;
 import org.jboss.seam.log.Log;
 import org.jboss.seam.security.AuthorizationException;
+import org.jboss.seam.security.Identity;
 
 @Name("ElementRefaire")
 @Scope(ScopeType.EVENT)
@@ -34,6 +38,9 @@ public class ElementRefaireHome extends EntityHome<Request>{
 	
 	@Logger
 	Log log;	
+	
+	@In
+	CustomIdentity identity;
 	
 	
 	
@@ -124,16 +131,22 @@ public class ElementRefaireHome extends EntityHome<Request>{
 		this.elements = elements;
 	}		
 
-	public String envoyer(){
+	public String envoyer() throws ClassNotFoundException, SQLException{
 		System.out.println("le nombre des elmentssssssssssssssssssssss  ");
 		Request r = new Request();
-		Collection<String> c = new ArrayList<String>();
+		Map<String,String> c = new HashMap<String,String>();		
+		ResultSet rs = null;
 		for (String element : elements) {
-			c.add(element);
-		}
+			String req = "select lib_elp from element_pedagogi l where l.cod_elp = '"+element+"'";
+			rs = this.connexion.createQuery(req);
+			rs.next();
+			//libElemDemande.add(rs.getString("lib_elp"));
+			c.put(element, rs.getString("lib_elp"));
+		}	
+		rs.close();
 		r.setDatas(c);
 		r.setStatus(Request.IN_PROGRESS);
-		r.setCode("1");
+		r.setCode(identity.getEtudiant().getCode());
 		r.setCreatedAt(new Date());
 		r.setNotified(Request.SHOW_ADMIN_NOTIFICATION);
 		RequestType rt = (RequestType)getEntityManager().createQuery("from RequestType r where r.code = 'ER'").getSingleResult();
@@ -213,15 +226,15 @@ public class ElementRefaireHome extends EntityHome<Request>{
 		log.info("set notified to 3 cad vue par etudiant");				
 		this.instance.setNotified(Request.HIDE_STUDENT_NOTIFICATION);
 		this.update();				
-		this.libElemDemande = new ArrayList<String>();
-		ResultSet rs = null;
-		for (String s : this.instance.getDatas()) {
-			String req = "select lib_elp from element_pedagogi l where l.cod_elp = '"+s+"'";
-			rs = this.connexion.createQuery(req);
-			rs.next();
-			libElemDemande.add(rs.getString("lib_elp"));
-		}	
-		rs.close();
+//		this.libElemDemande = new ArrayList<String>();
+//		ResultSet rs = null;
+//		for (String s : this.instance.getDatas()) {
+//			String req = "select lib_elp from element_pedagogi l where l.cod_elp = '"+s+"'";
+//			rs = this.connexion.createQuery(req);
+//			rs.next();
+//			libElemDemande.add(rs.getString("lib_elp"));
+//		}	
+//		rs.close();
 		FacesMessages.instance().clear();
 		
 	

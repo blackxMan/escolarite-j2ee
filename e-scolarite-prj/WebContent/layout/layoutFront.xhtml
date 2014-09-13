@@ -66,33 +66,29 @@
       <h5 class="sidebartitle">Navigation</h5>
       <ul class="nav nav-pills nav-stacked nav-bracket">
         <ui:insert name="mainMenu">
-        <li class="nav-parent active">
-          <a href="#"><i class="fa fa-home"></i> <span>Configuration</span></a>
-          <ul class="children">
-            <li>
-              <a href="type-reclamation_new"><i class="fa fa-caret-right"></i>Ajouter typ reclamation</a>
-            </li>
-            <li><a href="type-reclamation"><i class="fa fa-caret-right"></i>Liste typ de reclamation</a></li>
-            <li><a href="type-demande_new"><i class="fa fa-caret-right"></i>Ajouter typ demande</a></li>
-            <li><a href="type-demande"><i class="fa fa-caret-right"></i>Liste typ demande</a></li>
-            <li><a href="import_data"><i class="fa fa-caret-right"></i>Importation</a></li>
-            <li><a href="#"><i class="fa fa-caret-right"></i>Listes des administrateurs</a></li>
-            <li><a href="#"><i class="fa fa-caret-right"></i>Creer un Administrateur</a></li>
-          </ul>
-        </li>
+        
         <li class="nav-parent">
           <a href="#"><i class="fa fa-home"></i> <span>Reclamations</span></a>
           <ul class="children">
             <li>
-              <a href="listerReclamation"><i class="fa fa-caret-right"></i>Liste des reclamations</a>
+              
+            	<h:outputLink outcome="#{facesContext.externalContext.requestContextPath}/frontend/reclamation/ReclamationsList.xhtml"><i class="fa fa-caret-right"></i>Liste des reclamations</h:outputLink>
+            </li>
+            <li>
+              <h:outputLink outcome="#{facesContext.externalContext.requestContextPath}/frontend/reclamation/ReclamationsEdit.xhtml"><i class="fa fa-caret-right"></i>Ajouter une reclamations</h:outputLink>            
             </li>
           </ul>
         </li>
         <li class="nav-parent">
-          <a href="#"><i class="fa fa-home"></i> <span>Demandes</span></a>
+          <a href="#"><i class="fa fa-home"></i> <span>Refaire élément</span></a>
           <ul class="children">
             <li>
-              <a href="listedemande"><i class="fa fa-caret-right"></i>Liste des demandes</a>
+            <h:outputLink outcome="#{facesContext.externalContext.requestContextPath}/frontend/refaireElement/elementArefaire.xhtml"><i class="fa fa-caret-right"></i>Liste des demandes</h:outputLink>
+              
+            </li>
+            <li>
+            <h:outputLink outcome="#{facesContext.externalContext.requestContextPath}/frontend/refaireElement/elementArefaire.xhtml"><i class="fa fa-caret-right"></i>Envoyer</h:outputLink>
+              
             </li>
           </ul>
         </li>
@@ -190,7 +186,7 @@
                 
                 	
 						<ui:repeat var="_rec" value="#{notificationListFrontReq.resultList}">
-							<s:link view='/frontend/#{_rec.requestType.code.equals("ER") ? "RefaireElement" : RequestEdit}.xhtml' value="" propagation="none" id="request">
+							<s:link view='/frontend/refaireElement/#{_rec.requestType.code.equals("ER") ? "RefaireElement" : RequestEdit}.xhtml' value="" propagation="none" id="request">
 								<f:param name="requestId" value="#{_rec.id}" />
 			                 	<li class="new">
 				                    
@@ -216,13 +212,12 @@
           <li>
             <div class="btn-group">
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                <img src="../images/photos/loggeduser.png" alt="" />
-                Fayssal tahtoub-name
+                <img src="#{facesContext.externalContext.requestContextPath}/images/photos/loggeduser.png" alt="" />
+                #{identity.etudiant.prenom} #{identity.etudiant.nom}
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-                <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Paramètres</a></li>
-                <li><a href="admin_logout"><i class="glyphicon glyphicon-log-out"></i> Déconnexion</a></li>
+                <li><s:link id="menuLogoutId" view="/frontend/login.xhtml" action="#{identity.logout}" value="Déconnexion" rendered="#{identity.loggedIn}" propagation="none"/></li>
               </ul>
             </div>
           </li>

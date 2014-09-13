@@ -4,23 +4,42 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import org.jboss.seam.security.AuthorizationException;
+
+import javax.faces.event.ValueChangeEvent;
 import javax.persistence.Query;
 
 import org.escolarite.database.persistance.entities.Reclamation;
 import org.escolarite.database.persistance.entities.ReclamationType;
+import org.escolarite.session.backend.CustomIdentity;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.Factory;
+import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.faces.FacesMessages;
 import org.jboss.seam.framework.EntityHome;
 import org.jboss.seam.log.Log;
+import org.jboss.seam.security.AuthorizationException;
+import org.jboss.seam.security.Credentials;
 
 @Name("reclamationHome")
+
 public class ReclamationHome extends EntityHome<Reclamation> {
 	@Logger
 	private Log log;
+	
+	@In
+	CustomIdentity identity;
+	
+	private int max = 0;
+	
+	public int getMax() {
+		return max;
+	}
+
+	public void setMax(int max) {
+		this.max = max;
+	}
 
 	public void setReclamationId(Long id) {		
 		setId(id);
@@ -65,6 +84,7 @@ public class ReclamationHome extends EntityHome<Reclamation> {
 	}
 
 	public String ajouterReclamation() {
+		log.info(identity.getEtudiant().getCode()+"dddddddddddddddddddddddddddddddddddddddd");
 		if (verifier())
 			return persist();
 		FacesMessages.instance().add(
@@ -96,13 +116,14 @@ public class ReclamationHome extends EntityHome<Reclamation> {
 		Query req = getEntityManager()
 				.createQuery(
 						"from Reclamation r"
-								+ " where r.code='1' and r.reclamationType = :recType and r.created_at between :date1 and :date2");
+								+ " where r.code = :code and r.reclamationType = :recType and r.created_at between :date1 and :date2");
 
 		req.setParameter("date1", debutSaison.getTime());
 		req.setParameter("date2", finSaison.getTime());
 		req.setParameter("recType", instance.getReclamationType());
+		req.setParameter("code", identity.getEtudiant().getCode());
 		List<Reclamation> reclamations = req.getResultList();
-		instance.setCode("1");
+		instance.setCode(identity.getEtudiant().getCode());
 
 		return instance.getReclamationType().getMax_authorized() > reclamations
 				.size();
@@ -139,8 +160,9 @@ public class ReclamationHome extends EntityHome<Reclamation> {
 		
 	}
 	
-	public void isItsReclamation() throws AuthorizationException{		
-		Reclamation rec = (Reclamation) this.getEntityManager().createQuery("from Reclamation where id = :id and code = '1'").setParameter("id", instance.getId()).getSingleResult();
+	public void isItsReclamation() throws AuthorizationException{	
+		log.info(this.identity.getEtudiant().getCode());
+		Reclamation rec = (Reclamation) this.getEntityManager().createQuery("from Reclamation where id = :id and code = :code").setParameter("id", instance.getId()).setParameter("code", identity.getEtudiant().getCode()).getSingleResult();
 		if(rec == null)
 		throw new AuthorizationException("erreur");
 		
@@ -149,11 +171,23 @@ public class ReclamationHome extends EntityHome<Reclamation> {
 	public String supprimer(){
 		this.wire();
 		FacesMessages.instance().clear();
-		if(this.instance.getStatus()!=0)
+		if(this.instance.getConsultedAt()!=null)
 			FacesMessages.instance().add("Reclamation deja validée");
 		else this.remove();
 		return "removed";
 	}
+	
+//	public void consultMax(ValueChangeEvent event){
+//		//assign new value to localeCode
+//		ReclamationType rt =(ReclamationType) event.getNewValue();
+//		
+//	        //event.getClass()
+//	        //flagDisabled = "2".equals();
+//	        log.info("onchangeeeeeeeeeeeeeeeee  "+event.getNewValue().getClass());
+//	    
+//		
+//		//if (this.instance != null)this.max = this.instance.getReclamationType().getMax_authorized();
+//	}
 	
 
 }

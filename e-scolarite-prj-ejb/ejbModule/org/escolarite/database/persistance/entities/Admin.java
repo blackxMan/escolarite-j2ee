@@ -7,17 +7,14 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
@@ -31,7 +28,7 @@ public class Admin implements Serializable
 	 * 
 	 */
 	private static final long serialVersionUID = 848116932671642016L;
-
+	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
@@ -42,12 +39,16 @@ public class Admin implements Serializable
     private String lastname;
     
     @NotNull
-    @Email
+    @Email(message="Veuillez entrer un email valide")
     private String email;
     
     private Date created_at;
     
     private boolean expired;
+    
+    @NotNull
+    @Length(min=6,max=12,message="la longueur du mot de passe est entre {min} et {max}")
+    private String password;
     
     @OneToMany(targetEntity=RequestState.class,mappedBy="admin",cascade={CascadeType.PERSIST,CascadeType.REMOVE})
     private List<RequestState> requestStates;
@@ -57,11 +58,6 @@ public class Admin implements Serializable
     	this.requestStates = new ArrayList<RequestState>();
     	this.created_at = new Date();
     }
-    
-    @NotNull
-    @Length(min=6,max=12)
-    private String password;
-    
     
     public Long getId() {
         return id;

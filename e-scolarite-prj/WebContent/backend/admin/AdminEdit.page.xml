@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.org/schema/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.org/schema/seam/pages http://jboss.org/schema/seam/pages-2.3.xsd"
+      no-conversation-view-id="/backend/admin/AdminList.xhtml"
+      login-required="false">
+
+   <begin-conversation join="true" flush-mode="MANUAL"/>
+<restrict>#{s:hasRole('superAdmin')}</restrict>
+   <action execute="#{adminHome.wire}"/>
+
+   <param name="adminFrom"/>
+   <param name="adminId" value="#{adminHome.adminId}"/>
+	
+
+   <navigation from-action="#{adminHome.persist}">
+      <rule if-outcome="persisted">
+         <end-conversation/>
+         <redirect view-id="/backend/admin/Admin.xhtml"/>
+      </rule>
+   </navigation>
+
+   <navigation from-action="#{adminHome.update}">
+      <rule if-outcome="updated">
+         <end-conversation/>
+         <redirect view-id="/backend/admin/Admin.xhtml"/>
+      </rule>
+   </navigation>
+
+   
+
+</page>

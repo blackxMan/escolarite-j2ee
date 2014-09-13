@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
@@ -86,7 +88,7 @@ public class Request implements Serializable
 	
 	
 	@ElementCollection
-	private Collection<String> datas = new ArrayList<String>();
+	private Map<String,String> datas = new HashMap<String,String>();
 	
 	private String code;// le code appoge
 	
@@ -155,11 +157,11 @@ public class Request implements Serializable
 		this.status = status;
 	}
 
-	public Collection<String> getDatas() {
+	public Map<String,String> getDatas() {
 		return this.datas;		
 	}
 
-	public void setDatas(Collection<String> datas) {
+	public void setDatas(Map<String,String> datas) {
 		this.datas = datas;
 	}
 

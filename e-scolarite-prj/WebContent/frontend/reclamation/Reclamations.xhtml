@@ -1,0 +1,97 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich" template="/layout/layoutFront.xhtml">
+
+	<ui:define name="pageTitle">
+		<i class="fa fa-book"></i> Réclamation
+	</ui:define>
+	<ui:define name="content">
+		
+
+			<div class="panel panel-default">
+
+				<div class="panel-heading">
+					<div class="panel-btns">
+						<a href="#" class="panel-close">&times;</a> <a href="#"
+							class="minimize">&minus;</a>
+					</div>
+					<h4 class="panel-title"> Détail d'une réclamation</h4>
+					
+				</div>
+
+				<div class="panel-body panel-body-nopadding">
+				<br />
+					<br />
+
+
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Objet  :
+						</label>
+						<div class="col-sm-6">
+							
+								<h:outputText id="code" value="#{reclamationHome.instance.subject}" styleClass="form-control"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Type  :
+						</label>
+						<div class="col-sm-6">
+							<h:outputText id="title" value="#{reclamationHome.instance.reclamationType.title}" styleClass="form-control"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Description  :
+						</label>
+						<div class="col-sm-6">							
+								<h:outputText id="max_authorized" value="#{reclamationHome.instance.description}" styleClass="form-control"/>							
+						</div>
+					</div>
+					<h:outputFormat rendered="#{reclamationHome.instance.responce != null}">
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Réponse  :
+						</label>
+						<div class="col-sm-6">
+							<h:outputText id="responce" required="true" styleClass="form-control" 
+								value="#{reclamationHome.instance.responce}">
+									
+							</h:outputText>
+						</div>
+					</div>
+					</h:outputFormat>
+					
+					<!-- <div class="form-group">
+						<label class="col-sm-3 control-label">Status <span
+							class="asterisk">*</span> :
+						</label>
+						<div class="col-sm-6">							
+								<h:outputLabel rendered="#{reclamationHome.instance.status==0}">Votre réclamation est en cours de traitement</h:outputLabel>
+								<h:outputLabel rendered="#{reclamationHome.instance.status==2}">Votre réclamation a été rejetée</h:outputLabel>
+								<h:outputLabel rendered="#{reclamationHome.instance.status==1}">Votre réclamation a été acceptée</h:outputLabel>							
+						</div>
+					</div>
+					 -->
+					<br />
+					<br />
+
+
+				</div>
+				<!-- panel-body -->
+
+				
+				<!-- panel-footer -->
+
+			</div>
+			<!-- panel -->
+
+		
+	</ui:define>
+</ui:composition>
+
+
+
+

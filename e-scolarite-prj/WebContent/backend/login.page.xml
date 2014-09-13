@@ -4,15 +4,19 @@
       xsi:schemaLocation="http://jboss.org/schema/seam/pages http://jboss.org/schema/seam/pages-2.3.xsd">
 
    
-   
-   
+   <action execute="#{authenticator.isFrontLog()}"/>
+   <navigation from-action="#{authenticator.isFrontLog()}">
+	   	<rule if-outcome="front">
+	   		<redirect view-id="/frontend/login.xhtml"></redirect>
+	   	</rule>	   	
+   </navigation>
    <navigation from-action="#{identity.login}">
       <rule if="#{identity.loggedIn and s:hasRole('admin')}">
-         <redirect view-id="/backend/ReclamationList.xhtml"/>
+         <redirect view-id="/backend/reclamation/ReclamationList.xhtml"/>
       </rule>
       <rule if="#{identity.loggedIn and s:hasRole('superAdmin')}">
-         <redirect view-id="/backend/AdminList.xhtml"/>
-      </rule>
+         <redirect view-id="/backend/admin/AdminList.xhtml"/>
+      </rule>      
    </navigation>
    
    

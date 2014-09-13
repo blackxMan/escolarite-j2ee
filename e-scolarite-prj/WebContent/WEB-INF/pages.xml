@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pages no-conversation-view-id="/home.xhtml"
- xmlns="http://jboss.org/schema/seam/pages"
+ xmlns="http://jboss.org/schema/seam/pages" 
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jboss.org/schema/seam/pages http://jboss.org/schema/seam/pages-2.3.xsd">
- <page view-id="*">
-  <navigation>
-   <rule if-outcome="home">
-    <redirect view-id="/home.xhtml"/>
-   </rule>
-  </navigation>
- </page>
  
+ 
+ 
+ <exception class="com.sun.faces.context.FacesFileNotFoundException">
+  <redirect view-id="/notfound.xhtml">
+   <message severity="warn">Record not found</message>
+  </redirect>
+ </exception>
  <exception class="javax.persistence.NoResultException">
   <redirect view-id="/notfound.xhtml">
    <message severity="warn">Record not found</message>
@@ -47,11 +47,11 @@
    <message severity="error">You don't have permission to access this resource</message>
   </redirect>
  </exception>
- <exception class="org.jboss.seam.security.NotLoggedInException" log="false">
-  <redirect view-id="/backend/login.xhtml">
+ <exception class="org.jboss.seam.security.NotLoggedInException" log="true" >
+  <redirect view-id="/backend/login.xhtml" > 	
    <message severity="warn">Veuillez s'authentifier</message> 
   </redirect>
- </exception>
+ </exception> 
  <exception class="javax.faces.application.ViewExpiredException">
   <redirect view-id="/notfound.xhtml">
    <message severity="warn">Your session has timed out, please try again</message>

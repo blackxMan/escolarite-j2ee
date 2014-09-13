@@ -1,0 +1,132 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich" template="/layout/layoutFront.xhtml"
+                xmlns:a="http://richfaces.org/a4j">
+	
+	
+	<ui:define name="pageTitle">
+		<i class="fa fa-book"></i> Réclamation
+	</ui:define>
+	<ui:define name="content">
+	
+	
+		<h:form id="loginForm">
+
+			<div class="panel panel-default">
+	
+				<div class="panel-heading">
+					<div class="panel-btns">
+						<a href="#" class="panel-close">&times;</a> <a href="#"
+							class="minimize">&minus;</a>
+					</div>
+					<h4 class="panel-title">#{reclamationHome.managed ?
+						'Modifier' : 'Envoyer'} une réclamation</h4>
+					<p>Cette interface permet d#{reclamationHome.managed ? 'e
+						modifier' : '\'envoyer'} une réclamation.</p>
+				</div>
+
+				<div class="panel-body panel-body-nopadding">
+					<div class="error" style="display:block;padding : 10px 249px;">
+		              <h:messages/>		              
+		            </div>
+
+
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Objet <span
+							class="asterisk">*</span> :
+						</label>
+						<div class="col-sm-6">
+							<h:inputText id="subject"
+			                       required="true"
+			                           size="60"
+			                      maxlength="60"
+			                          value="#{reclamationHome.instance.subject}">
+			                    <a:ajax event="blur" render="subjectField" bypassUpdates="true"/>
+			                </h:inputText>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Type de reclamation <span
+							class="asterisk">*</span> :
+						</label>
+						<div class="col-sm-6">							
+							
+					        
+					        <h:selectOneMenu id="reclamationType" value="#{reclamationHome.instance.reclamationType}" required="true">  
+								<s:selectItems var="_reclamationType" value="#{reclamationT}"  
+								label="#{_reclamationType.title}" noSelectionLabel="-- Select --"/>  
+								     <s:convertEntity/>             
+							</h:selectOneMenu> 
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Description <span
+							class="asterisk">*</span> :
+						</label>
+						<div class="col-sm-6">
+							<h:inputTextarea id="maxAuthorized" required="true" styleClass="form-control" 
+								value="#{reclamationHome.instance.description}">
+									
+							</h:inputTextarea>
+						</div>
+					</div>
+
+				<div class="error" style="display:block;padding : 10px 249px;">
+		              
+		            </div>
+
+				</div>
+				<!-- panel-body -->
+
+				<div class="panel-footer">
+					<div class="row">
+						<div class="col-sm-6 col-sm-offset-3">
+							<h:commandButton id="save" value="Envoyer"
+								action="#{reclamationHome.ajouterReclamation()}"
+								disabled="#{!reclamationHome.wired}"
+								rendered="#{!reclamationHome.managed}"
+								styleClass="btn btn-primary" />
+
+							<h:commandButton id="update" value="Modifier"
+								action="#{reclamationHome.update()}"
+								rendered="#{reclamationHome.managed}"
+								styleClass="btn btn-primary" />
+
+						</div>
+					</div>
+				</div>
+				<!-- panel-footer -->
+
+			</div>
+			<!-- panel -->
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

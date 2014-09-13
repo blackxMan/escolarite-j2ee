@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.org/schema/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.org/schema/seam/pages http://jboss.org/schema/seam/pages-2.3.xsd"
+      login-required="true">
+	<param name="reclamationsId" value="#{reclamationHome.reclamationId}"/>
+   <param name="firstResult" value="#{reclamationsList.firstResult}"/>
+   <param name="sort" value="#{reclamationsList.orderColumn}"/>
+   <param name="dir" value="#{reclamationsList.orderDirection}"/>
+   <param name="logic" value="#{reclamationsList.restrictionLogicOperator}"/>
+	<restrict>#{s:hasRole('etudiant')}</restrict>
+   <param name="from"/>
+   <param name="description" value="#{reclamationsList.reclamations.description}"/>
+   <param name="responce" value="#{reclamationsList.reclamations.responce}"/>
+   <param name="subject" value="#{reclamationsList.reclamations.subject}"/>
+	<navigation from-action="#{reclamationHome.supprimer()}">
+      <rule if-outcome="removed">
+         <end-conversation/>
+         <redirect view-id="/frontend/reclamation/ReclamationsList.xhtml"/>
+      </rule>
+   </navigation>
+</page>
+

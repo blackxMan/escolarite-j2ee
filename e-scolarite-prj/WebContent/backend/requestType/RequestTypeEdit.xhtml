@@ -1,0 +1,92 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich" template="/layout/layout.xhtml">
+	
+	<ui:define name="pageTitle">
+		<i class="fa fa-book"></i> Type de demande
+	</ui:define>
+	<ui:define name="content">
+		<h:form id="loginForm">
+<h:messages />
+			<div class="panel panel-default">
+
+				<div class="panel-heading">
+					<div class="panel-btns">
+						<a href="#" class="panel-close">&times;</a> <a href="#"
+							class="minimize">&minus;</a>
+					</div>
+					<h4 class="panel-title">#{requestTypeHome.managed ?
+						'Modifier' : 'Ajouter'} un type de demande</h4>
+					<p>Cette interface permet d#{requestTypeHome.managed ? 'e
+						modifier' : '\'ajouter'} un type de demande.</p>
+				</div>
+
+				<div class="panel-body panel-body-nopadding">
+
+
+
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Code <span
+							class="asterisk">*</span> :
+						</label>
+						<div class="col-sm-6">
+							<h:inputText id="code" styleClass="form-control" required="true"
+								value="#{requestTypeHome.instance.code}" label="le code"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Libelle <span
+							class="asterisk">*</span> :
+						</label>
+						<div class="col-sm-6">
+							<h:inputText id="title" styleClass="form-control" required="true"
+								value="#{requestTypeHome.instance.title}" label="le libelle"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Max autorise <span
+							class="asterisk">*</span> :
+						</label>
+						<div class="col-sm-6">
+							<h:inputText id="maxAuthorized" required="true" styleClass="form-control" 
+								value="#{requestTypeHome.instance.maxRequest}" label="max autorisé">
+
+							</h:inputText>
+						</div>
+					</div>
+
+
+
+				</div>
+				<!-- panel-body -->
+
+				<div class="panel-footer">
+					<div class="row">
+						<div class="col-sm-6 col-sm-offset-3">
+							<h:commandButton id="save" value="Ajouter"
+								action="#{requestTypeHome.persist}"
+								disabled="#{!requestTypeHome.wired}"
+								rendered="#{!requestTypeHome.managed}"
+								styleClass="btn btn-primary" />
+
+							<h:commandButton id="update" value="Modifier"
+								action="#{requestTypeHome.update}"
+								rendered="#{requestTypeHome.managed}"
+								styleClass="btn btn-primary" />
+
+						</div>
+					</div>
+				</div>
+				<!-- panel-footer -->
+
+			</div>
+			<!-- panel -->
+
+		</h:form>
+	</ui:define>
+</ui:composition>
